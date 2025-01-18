@@ -7,12 +7,12 @@
 
 import UIKit
 import FirebaseAuth
+import SwiftUI
 
 class LoginViewController: UIViewController {
 
     private let gradientLayer = CAGradientLayer()
     
-    // UI Elements
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Sign in"
@@ -141,14 +141,13 @@ class LoginViewController: UIViewController {
                 self.showAlert("Sign In Failed: \(error.localizedDescription)")
                 return
             }
-            self.showAlert("Sign In Successful!") {
-                let mainViewController = UIViewController()
-                mainViewController.view.backgroundColor = .systemGreen
-                mainViewController.title = "Welcome"
-                self.navigationController?.pushViewController(mainViewController, animated: true)
-            }
+
+            let mainTabBarController = MainTabBarController()
+            mainTabBarController.modalPresentationStyle = .fullScreen
+            self.present(mainTabBarController, animated: true, completion: nil)
         }
     }
+
     
     private func showAlert(_ message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
@@ -163,4 +162,3 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(signUpViewController, animated: true)
     }
 }
-

@@ -12,7 +12,6 @@ class SignUpViewController: UIViewController {
 
     private let gradientLayer = CAGradientLayer()
 
-    // UI Elements
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Sign up"
@@ -175,9 +174,11 @@ class SignUpViewController: UIViewController {
 
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
+                print("Firebase Registration Error: \(error.localizedDescription)")
                 self.showAlert("Registration Failed: \(error.localizedDescription)")
                 return
             }
+
             self.showAlert("Registration Successful!") {
                 self.navigationController?.popViewController(animated: true)
             }
