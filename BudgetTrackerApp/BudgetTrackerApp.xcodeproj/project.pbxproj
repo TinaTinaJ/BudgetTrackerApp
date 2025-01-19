@@ -13,6 +13,10 @@
 		3D79E2542D3D64DD00268968 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2532D3D64DB00268968 /* BarChartView.swift */; };
 		3D79E2562D3D64F200268968 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2552D3D64F000268968 /* LineChartView.swift */; };
 		3D79E2582D3D650B00268968 /* AreaChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2572D3D650900268968 /* AreaChartView.swift */; };
+		3D79E25F2D3D7CEF00268968 /* MockTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E25E2D3D7CED00268968 /* MockTransactions.swift */; };
+		3D79E2612D3D7D8400268968 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2602D3D7D7800268968 /* TransactionCell.swift */; };
+		3D79E2632D3D7E5700268968 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2622D3D7E5600268968 /* ExpenseCell.swift */; };
+		3D79E2652D3D7E6B00268968 /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2642D3D7E6900268968 /* GoalCell.swift */; };
 		3D8FE9EF2D3BEC53000360CE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3D8FE9EE2D3BEC53000360CE /* FirebaseAuth */; };
 		3D8FE9F12D3BEC53000360CE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 3D8FE9F02D3BEC53000360CE /* FirebaseCore */; };
 		3D8FE9F32D3BEC53000360CE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3D8FE9F22D3BEC53000360CE /* FirebaseFirestore */; };
@@ -65,6 +69,10 @@
 		3D79E2532D3D64DB00268968 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		3D79E2552D3D64F000268968 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		3D79E2572D3D650900268968 /* AreaChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaChartView.swift; sourceTree = "<group>"; };
+		3D79E25E2D3D7CED00268968 /* MockTransactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTransactions.swift; sourceTree = "<group>"; };
+		3D79E2602D3D7D7800268968 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		3D79E2622D3D7E5600268968 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
+		3D79E2642D3D7E6900268968 /* GoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
 		3D8FE9AB2D3BB303000360CE /* BudgetTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8FE9BC2D3BB304000360CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D8FE9C12D3BB304000360CE /* BudgetTrackerAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetTrackerAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +146,197 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D79E2662D3D8A7100268968 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				3D79E2672D3D8B0600268968 /* Resources */,
+				3D8FE9F72D3BF4AB000360CE /* AppDelegate.swift */,
+				3D8FE9F82D3BF4AB000360CE /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		3D79E2672D3D8B0600268968 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3D8FE9FC2D3BF4AB000360CE /* Assets.xcassets */,
+				3D8FE9FE2D3BF4AB000360CE /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		3D79E2682D3D8B3700268968 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3D8FEA002D3BF4AB000360CE /* Utilities */,
+				3D8FEA2D2D3C3E71000360CE /* Extentions */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		3D79E2692D3D8B8200268968 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				3D79E26A2D3D8BE700268968 /* Services */,
+				3D8FE9FF2D3BF4AB000360CE /* MockData */,
+				3D8FE9FB2D3BF4AB000360CE /* Models */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		3D79E26A2D3D8BE700268968 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3D8FE9FA2D3BF4AB000360CE /* FirebaseConfig */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3D79E26B2D3D8C4200268968 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				3D79E26C2D3D8C6800268968 /* Authentication */,
+				3D79E2752D3D8DA700268968 /* Dashboard */,
+				3D79E2782D3D8E2200268968 /* Charts */,
+				3D79E26F2D3D8CCD00268968 /* Budget */,
+				3D79E2722D3D8D0F00268968 /* Transactions */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		3D79E26C2D3D8C6800268968 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				3D79E26D2D3D8C8F00268968 /* Views */,
+				3D79E26E2D3D8CAE00268968 /* ViewModels */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		3D79E26D2D3D8C8F00268968 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3D8FEA022D3BF4AB000360CE /* LoginViewController.swift */,
+				3D8FEA032D3BF4AB000360CE /* SignUpViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3D79E26E2D3D8CAE00268968 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		3D79E26F2D3D8CCD00268968 /* Budget */ = {
+			isa = PBXGroup;
+			children = (
+				3D79E2702D3D8CD700268968 /* Views */,
+				3D79E2712D3D8CDE00268968 /* ViewModels */,
+			);
+			path = Budget;
+			sourceTree = "<group>";
+		};
+		3D79E2702D3D8CD700268968 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3D8FEA172D3C2C6F000360CE /* BudgetViewController.swift */,
+				3D79E2642D3D7E6900268968 /* GoalCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3D79E2712D3D8CDE00268968 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		3D79E2722D3D8D0F00268968 /* Transactions */ = {
+			isa = PBXGroup;
+			children = (
+				3D79E2742D3D8D3E00268968 /* Views */,
+				3D79E2732D3D8D3500268968 /* ViewModels */,
+			);
+			path = Transactions;
+			sourceTree = "<group>";
+		};
+		3D79E2732D3D8D3500268968 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				3D8FEA312D3C403A000360CE /* TransactionViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		3D79E2742D3D8D3E00268968 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3D8FEA192D3C2C8D000360CE /* AddTransactionViewController.swift */,
+				3D79E2602D3D7D7800268968 /* TransactionCell.swift */,
+				3D79E2622D3D7E5600268968 /* ExpenseCell.swift */,
+				3D79E2452D3CFE6200268968 /* CustomNumberPad.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3D79E2752D3D8DA700268968 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				3D79E2772D3D8DBD00268968 /* Views */,
+				3D79E2762D3D8DB500268968 /* ViewModels */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		3D79E2762D3D8DB500268968 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		3D79E2772D3D8DBD00268968 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3D8FEA152D3C2C35000360CE /* DashboardView.swift */,
+				3D79E2472D3CFE8700268968 /* CategoryCell.swift */,
+				3D8FEA1B2D3C2CAE000360CE /* AdvicesView.swift */,
+				3D8FEA1D2D3C2CC8000360CE /* MoreViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3D79E2782D3D8E2200268968 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				3D79E2792D3D8E2C00268968 /* Views */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		3D79E2792D3D8E2C00268968 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3D79E2572D3D650900268968 /* AreaChartView.swift */,
+				3D79E2552D3D64F000268968 /* LineChartView.swift */,
+				3D8FEA1F2D3C2D41000360CE /* PieChartView.swift */,
+				3D79E2532D3D64DB00268968 /* BarChartView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3D79E27A2D3D8E6200268968 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				3D8FEA212D3C2FB0000360CE /* MainTabBarController.swift */,
+				3D8FEA132D3C2C02000360CE /* TabBarController.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		3D8FE9A22D3BB303000360CE = {
 			isa = PBXGroup;
 			children = (
@@ -159,17 +358,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3D8FE9F92D3BF4AB000360CE /* Applications */ = {
-			isa = PBXGroup;
-			children = (
-				3D8FEA212D3C2FB0000360CE /* MainTabBarController.swift */,
-				3D8FEA132D3C2C02000360CE /* TabBarController.swift */,
-				3D8FE9F72D3BF4AB000360CE /* AppDelegate.swift */,
-				3D8FE9F82D3BF4AB000360CE /* SceneDelegate.swift */,
-			);
-			path = Applications;
-			sourceTree = "<group>";
-		};
 		3D8FE9FA2D3BF4AB000360CE /* FirebaseConfig */ = {
 			isa = PBXGroup;
 			children = (
@@ -189,14 +377,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		3D8FE9FF2D3BF4AB000360CE /* Resources */ = {
+		3D8FE9FF2D3BF4AB000360CE /* MockData */ = {
 			isa = PBXGroup;
 			children = (
+				3D79E25E2D3D7CED00268968 /* MockTransactions.swift */,
 				3D79E2512D3D64B000268968 /* MockDashboardData.swift */,
-				3D8FE9FC2D3BF4AB000360CE /* Assets.xcassets */,
-				3D8FE9FE2D3BF4AB000360CE /* LaunchScreen.storyboard */,
 			);
-			path = Resources;
+			path = MockData;
 			sourceTree = "<group>";
 		};
 		3D8FEA002D3BF4AB000360CE /* Utilities */ = {
@@ -206,45 +393,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		3D8FEA012D3BF4AB000360CE /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				3D8FEA312D3C403A000360CE /* TransactionViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		3D8FEA042D3BF4AB000360CE /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				3D79E2572D3D650900268968 /* AreaChartView.swift */,
-				3D79E2552D3D64F000268968 /* LineChartView.swift */,
-				3D79E2532D3D64DB00268968 /* BarChartView.swift */,
-				3D79E2472D3CFE8700268968 /* CategoryCell.swift */,
-				3D79E2452D3CFE6200268968 /* CustomNumberPad.swift */,
-				3D8FEA1F2D3C2D41000360CE /* PieChartView.swift */,
-				3D8FEA1D2D3C2CC8000360CE /* MoreViewController.swift */,
-				3D8FEA1B2D3C2CAE000360CE /* AdvicesView.swift */,
-				3D8FEA192D3C2C8D000360CE /* AddTransactionViewController.swift */,
-				3D8FEA172D3C2C6F000360CE /* BudgetViewController.swift */,
-				3D8FEA152D3C2C35000360CE /* DashboardView.swift */,
-				3D8FEA022D3BF4AB000360CE /* LoginViewController.swift */,
-				3D8FEA032D3BF4AB000360CE /* SignUpViewController.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		3D8FEA062D3BF4AB000360CE /* BudgetTrackerApp */ = {
 			isa = PBXGroup;
 			children = (
-				3D8FEA2D2D3C3E71000360CE /* Extentions */,
-				3D8FE9F92D3BF4AB000360CE /* Applications */,
-				3D8FE9FA2D3BF4AB000360CE /* FirebaseConfig */,
-				3D8FE9FB2D3BF4AB000360CE /* Models */,
-				3D8FE9FF2D3BF4AB000360CE /* Resources */,
-				3D8FEA002D3BF4AB000360CE /* Utilities */,
-				3D8FEA012D3BF4AB000360CE /* ViewModels */,
-				3D8FEA042D3BF4AB000360CE /* Views */,
+				3D79E27A2D3D8E6200268968 /* Navigation */,
+				3D79E2662D3D8A7100268968 /* App */,
+				3D79E2682D3D8B3700268968 /* Core */,
+				3D79E2692D3D8B8200268968 /* Data */,
+				3D79E26B2D3D8C4200268968 /* Features */,
 				3D8FE9BC2D3BB304000360CE /* Info.plist */,
 			);
 			path = BudgetTrackerApp;
@@ -407,21 +563,25 @@
 			files = (
 				3D8FEA202D3C2D43000360CE /* PieChartView.swift in Sources */,
 				3D8FEA072D3BF4AB000360CE /* AppDelegate.swift in Sources */,
+				3D79E25F2D3D7CEF00268968 /* MockTransactions.swift in Sources */,
 				3D8FEA282D3C3D57000360CE /* Transaction.swift in Sources */,
 				3D79E2562D3D64F200268968 /* LineChartView.swift in Sources */,
 				3D8FEA262D3C3D33000360CE /* Budget.swift in Sources */,
 				3D8FEA082D3BF4AB000360CE /* SceneDelegate.swift in Sources */,
 				3D8FEA092D3BF4AB000360CE /* LoginViewController.swift in Sources */,
+				3D79E2652D3D7E6B00268968 /* GoalCell.swift in Sources */,
 				3D8FEA162D3C2C39000360CE /* DashboardView.swift in Sources */,
 				3D8FEA1E2D3C2CCB000360CE /* MoreViewController.swift in Sources */,
 				3D8FEA142D3C2C08000360CE /* TabBarController.swift in Sources */,
 				3D8FEA2A2D3C3D72000360CE /* BankAccount.swift in Sources */,
 				3D8FEA222D3C2FB2000360CE /* MainTabBarController.swift in Sources */,
+				3D79E2612D3D7D8400268968 /* TransactionCell.swift in Sources */,
 				3D79E2582D3D650B00268968 /* AreaChartView.swift in Sources */,
 				3D8FEA0A2D3BF4AB000360CE /* SignUpViewController.swift in Sources */,
 				3D8FEA2C2D3C3DA1000360CE /* FirebaseManager.swift in Sources */,
 				3D8FEA1A2D3C2C8F000360CE /* AddTransactionViewController.swift in Sources */,
 				3D79E2522D3D64B300268968 /* MockDashboardData.swift in Sources */,
+				3D79E2632D3D7E5700268968 /* ExpenseCell.swift in Sources */,
 				3D8FEA1C2D3C2CB1000360CE /* AdvicesView.swift in Sources */,
 				3D8FEA182D3C2C72000360CE /* BudgetViewController.swift in Sources */,
 				3D8FEA242D3C3D17000360CE /* Category.swift in Sources */,
