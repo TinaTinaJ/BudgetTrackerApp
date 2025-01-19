@@ -40,9 +40,12 @@ class CategoryCell: UICollectionViewCell {
     // MARK: - Properties
     override var isSelected: Bool {
         didSet {
-            updateSelectionState()
+            animate()
         }
     }
+    
+    private var icon: String?
+    private var name: String?
     
     // MARK: - Initialization
     override init(frame: CGRect) {
@@ -56,8 +59,10 @@ class CategoryCell: UICollectionViewCell {
     
     // MARK: - Setup
     private func setupUI() {
+        // Important: Enable user interaction at all levels
         contentView.isUserInteractionEnabled = true
         isUserInteractionEnabled = true
+        backgroundColor = .clear
         
         contentView.addSubview(containerView)
         containerView.addSubview(iconLabel)
@@ -77,21 +82,45 @@ class CategoryCell: UICollectionViewCell {
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
+        
+        // Add tap gesture for better touch feedback
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
+        addGestureRecognizer(tapGesture)
     }
     
-    private func updateSelectionState() {
+    @objc private func cellTapped() {
+        // Provide haptic feedback
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        
+        // Animate the tap
+        UIView.animate(withDuration: 0.1, animations: {
+            self.containerView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        }) { _ in
+            UIView.animate(withDuration: 0.1) {
+                self.containerView.transform = .identity
+            }
+        }
+    }
+    
+    private func animate() {
         UIView.animate(withDuration: 0.2) {
-            self.containerView.backgroundColor = self.isSelected ? .brandGreen : .white
+            self.containerView.backgroundColor = self.isSelected ? UIColor(red: 54/255, green: 179/255, blue: 126/255, alpha: 1) : .white
             self.iconLabel.textColor = self.isSelected ? .white : .black
-            self.nameLabel.textColor = self.isSelected ? .brandGreen : .black
+            self.nameLabel.textColor = self.isSelected ? UIColor(red: 54/255, green: 179/255, blue: 126/255, alpha: 1) : .black
             self.containerView.transform = self.isSelected ? CGAffineTransform(scaleX: 1.05, y: 1.05) : .identity
         }
     }
     
     // MARK: - Configuration
     func configure(with icon: String, name: String) {
+        self.icon = icon
+        self.name = name
         iconLabel.text = icon
         nameLabel.text = name
+        
+        // Force update of selection state
+        animate()
     }
     
     override func prepareForReuse() {
@@ -99,5 +128,6 @@ class CategoryCell: UICollectionViewCell {
         iconLabel.text = nil
         nameLabel.text = nil
         isSelected = false
+        containerView.transform = .identity
     }
 }

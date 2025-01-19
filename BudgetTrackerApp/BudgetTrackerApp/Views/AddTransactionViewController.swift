@@ -7,6 +7,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseCore
 
 class AddTransactionViewController: UIViewController {
     
@@ -69,14 +70,11 @@ class AddTransactionViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 20
         layout.minimumInteritemSpacing = 20
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .clear
         cv.delegate = self
         cv.dataSource = self
         cv.register(CategoryCell.self, forCellWithReuseIdentifier: "CategoryCell")
-        cv.allowsSelection = true
-        cv.isUserInteractionEnabled = true
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
@@ -88,6 +86,8 @@ class AddTransactionViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
         button.layer.cornerRadius = 12
+        button.alpha = 0.5
+        button.isEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -203,10 +203,19 @@ class AddTransactionViewController: UIViewController {
     }
     
     @objc private func confirmTapped() {
+        print("Confirm tapped")
+        print("Amount: \(amountLabel.text ?? "nil")")
+        print("Category: \(selectedCategory ?? "nil")")
+        
         guard let amountText = amountLabel.text,
               let amount = Double(amountText),
-              let category = selectedCategory else {
-            showAlert(message: "Please select amount and category")
+              amount > 0 else {
+            showAlert(title: "Invalid Amount", message: "Please enter a valid amount greater than 0")
+            return
+        }
+        
+        guard let category = selectedCategory else {
+            showAlert(title: "Category Required", message: "Please select a category")
             return
         }
         
@@ -215,7 +224,7 @@ class AddTransactionViewController: UIViewController {
     
     private func saveTransaction(amount: Double, category: String) {
         guard let userId = Auth.auth().currentUser?.uid else {
-            showAlert(message: "Please sign in to add transactions")
+            showAlert(title: "Authentication Error", message: "Please sign in to add transactions")
             return
         }
         
@@ -226,16 +235,16 @@ class AddTransactionViewController: UIViewController {
             "category": category,
             "type": isIncome ? "income" : "expense",
             "date": Timestamp(),
-            "createdAt": Timestamp()
+            "createdAt": FieldValue.serverTimestamp()
         ]
         
         db.collection("users").document(userId)
             .collection("transactions")
             .addDocument(data: transaction) { [weak self] error in
                 if let error = error {
-                    self?.showAlert(message: "Error: \(error.localizedDescription)")
+                    self?.showAlert(title: "Error", message: error.localizedDescription)
                 } else {
-                    self?.showAlert(message: "Transaction saved successfully") { _ in
+                    self?.showAlert(title: "Success", message: "Transaction saved successfully") { _ in
                         self?.resetForm()
                     }
                 }
@@ -246,12 +255,21 @@ class AddTransactionViewController: UIViewController {
         amountLabel.text = "0"
         selectedCategory = nil
         collectionView.reloadData()
+        updateConfirmButtonState()
     }
     
-    private func showAlert(message: String, completion: ((UIAlertAction) -> Void)? = nil) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+    private func showAlert(title: String? = nil, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: completion))
         present(alert, animated: true)
+    }
+    
+    private func updateConfirmButtonState() {
+        let amountIsValid = amountLabel.text != "0" && amountLabel.text != "0.0"
+        let categoryIsSelected = selectedCategory != nil
+        print("Amount valid: \(amountIsValid), Category selected: \(categoryIsSelected)") // Debug
+        confirmButton.isEnabled = amountIsValid && categoryIsSelected
+        confirmButton.alpha = confirmButton.isEnabled ? 1.0 : 0.5
     }
 }
 
@@ -276,7 +294,18 @@ extension AddTransactionViewController: UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedCategory = categories[indexPath.item].name
+        print("Selected category: \(selectedCategory ?? "None")") // Debug
+        updateConfirmButtonState()
         collectionView.reloadData()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if selectedCategory == categories[indexPath.item].name {
+            selectedCategory = nil
+            print("Deselected category: \(categories[indexPath.item].name)") // Debug
+            updateConfirmButtonState()
+            collectionView.reloadData()
+        }
     }
 }
 
@@ -284,9 +313,11 @@ extension AddTransactionViewController: UICollectionViewDelegate, UICollectionVi
 extension AddTransactionViewController: CustomNumberPadDelegate {
     func numberPadDidEnterValue(_ value: String) {
         amountLabel.text = value
+        updateConfirmButtonState()
     }
     
     func numberPadDidClear() {
         amountLabel.text = "0"
+        updateConfirmButtonState()
     }
 }
