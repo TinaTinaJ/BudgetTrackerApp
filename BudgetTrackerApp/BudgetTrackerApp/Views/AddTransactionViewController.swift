@@ -11,7 +11,6 @@ import FirebaseCore
 
 class AddTransactionViewController: UIViewController {
     
-    // MARK: - UI Components
     private let segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: ["New income", "New expense"])
         control.selectedSegmentIndex = 0
@@ -75,6 +74,10 @@ class AddTransactionViewController: UIViewController {
         cv.delegate = self
         cv.dataSource = self
         cv.register(CategoryCell.self, forCellWithReuseIdentifier: "CategoryCell")
+        cv.allowsSelection = true
+        cv.allowsMultipleSelection = false
+        cv.isUserInteractionEnabled = true
+        cv.delaysContentTouches = false
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
@@ -99,7 +102,6 @@ class AddTransactionViewController: UIViewController {
         return pad
     }()
     
-    // MARK: - Properties
     private let currencies = ["GEL", "USD", "EUR"]
     private var selectedCurrency = "GEL"
     private var selectedCategory: String?
@@ -110,14 +112,13 @@ class AddTransactionViewController: UIViewController {
         ("⚕️", "Health"), ("👕", "Clothes"), ("🚌", "Transport"), ("📦", "Other")
     ]
     
-    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
+        updateConfirmButtonState()
     }
     
-    // MARK: - Setup
     private func setupUI() {
         view.backgroundColor = .backgroundMint
         title = "Add Transaction"
@@ -186,7 +187,6 @@ class AddTransactionViewController: UIViewController {
         ])
     }
     
-    // MARK: - Actions
     @objc private func currencyTapped(_ sender: UIButton) {
         guard let currency = sender.title(for: .normal) else { return }
         
@@ -242,6 +242,7 @@ class AddTransactionViewController: UIViewController {
             .collection("transactions")
             .addDocument(data: transaction) { [weak self] error in
                 if let error = error {
+                    print("Firebase error: \(error.localizedDescription)")
                     self?.showAlert(title: "Error", message: error.localizedDescription)
                 } else {
                     self?.showAlert(title: "Success", message: "Transaction saved successfully") { _ in
@@ -267,13 +268,13 @@ class AddTransactionViewController: UIViewController {
     private func updateConfirmButtonState() {
         let amountIsValid = amountLabel.text != "0" && amountLabel.text != "0.0"
         let categoryIsSelected = selectedCategory != nil
-        print("Amount valid: \(amountIsValid), Category selected: \(categoryIsSelected)") // Debug
+        print("Validation state - Amount: \(amountIsValid), Category: \(categoryIsSelected)")
+        
         confirmButton.isEnabled = amountIsValid && categoryIsSelected
         confirmButton.alpha = confirmButton.isEnabled ? 1.0 : 0.5
     }
 }
 
-// MARK: - UICollectionView Extensions
 extension AddTransactionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categories.count
@@ -293,23 +294,14 @@ extension AddTransactionViewController: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Category selected at index: \(indexPath.item)")
         selectedCategory = categories[indexPath.item].name
-        print("Selected category: \(selectedCategory ?? "None")") // Debug
+        print("Selected category: \(selectedCategory ?? "nil")")
         updateConfirmButtonState()
         collectionView.reloadData()
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        if selectedCategory == categories[indexPath.item].name {
-            selectedCategory = nil
-            print("Deselected category: \(categories[indexPath.item].name)") // Debug
-            updateConfirmButtonState()
-            collectionView.reloadData()
-        }
-    }
 }
 
-// MARK: - CustomNumberPadDelegate
 extension AddTransactionViewController: CustomNumberPadDelegate {
     func numberPadDidEnterValue(_ value: String) {
         amountLabel.text = value

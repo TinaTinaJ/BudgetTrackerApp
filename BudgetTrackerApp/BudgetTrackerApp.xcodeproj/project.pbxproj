@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		3D79E2462D3CFE6400268968 /* CustomNumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2452D3CFE6200268968 /* CustomNumberPad.swift */; };
 		3D79E2482D3CFE8900268968 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2472D3CFE8700268968 /* CategoryCell.swift */; };
+		3D79E2522D3D64B300268968 /* MockDashboardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2512D3D64B000268968 /* MockDashboardData.swift */; };
+		3D79E2542D3D64DD00268968 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2532D3D64DB00268968 /* BarChartView.swift */; };
+		3D79E2562D3D64F200268968 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2552D3D64F000268968 /* LineChartView.swift */; };
+		3D79E2582D3D650B00268968 /* AreaChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2572D3D650900268968 /* AreaChartView.swift */; };
 		3D8FE9EF2D3BEC53000360CE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3D8FE9EE2D3BEC53000360CE /* FirebaseAuth */; };
 		3D8FE9F12D3BEC53000360CE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 3D8FE9F02D3BEC53000360CE /* FirebaseCore */; };
 		3D8FE9F32D3BEC53000360CE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3D8FE9F22D3BEC53000360CE /* FirebaseFirestore */; };
@@ -16,7 +20,6 @@
 		3D8FEA082D3BF4AB000360CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FE9F82D3BF4AB000360CE /* SceneDelegate.swift */; };
 		3D8FEA092D3BF4AB000360CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FEA022D3BF4AB000360CE /* LoginViewController.swift */; };
 		3D8FEA0A2D3BF4AB000360CE /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FEA032D3BF4AB000360CE /* SignUpViewController.swift */; };
-		3D8FEA0B2D3BF4AB000360CE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FEA052D3BF4AB000360CE /* ViewController.swift */; };
 		3D8FEA0C2D3BF4AB000360CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D8FE9FC2D3BF4AB000360CE /* Assets.xcassets */; };
 		3D8FEA0D2D3BF4AB000360CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D8FE9FE2D3BF4AB000360CE /* LaunchScreen.storyboard */; };
 		3D8FEA0F2D3C1FC2000360CE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D8FEA0E2D3C1FC2000360CE /* GoogleService-Info.plist */; };
@@ -58,6 +61,10 @@
 /* Begin PBXFileReference section */
 		3D79E2452D3CFE6200268968 /* CustomNumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNumberPad.swift; sourceTree = "<group>"; };
 		3D79E2472D3CFE8700268968 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		3D79E2512D3D64B000268968 /* MockDashboardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDashboardData.swift; sourceTree = "<group>"; };
+		3D79E2532D3D64DB00268968 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
+		3D79E2552D3D64F000268968 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
+		3D79E2572D3D650900268968 /* AreaChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaChartView.swift; sourceTree = "<group>"; };
 		3D8FE9AB2D3BB303000360CE /* BudgetTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8FE9BC2D3BB304000360CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D8FE9C12D3BB304000360CE /* BudgetTrackerAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetTrackerAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,7 +75,6 @@
 		3D8FE9FD2D3BF4AB000360CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D8FEA022D3BF4AB000360CE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3D8FEA032D3BF4AB000360CE /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		3D8FEA052D3BF4AB000360CE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3D8FEA0E2D3C1FC2000360CE /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D8FEA132D3C2C02000360CE /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		3D8FEA152D3C2C35000360CE /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 		3D8FE9FF2D3BF4AB000360CE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3D79E2512D3D64B000268968 /* MockDashboardData.swift */,
 				3D8FE9FC2D3BF4AB000360CE /* Assets.xcassets */,
 				3D8FE9FE2D3BF4AB000360CE /* LaunchScreen.storyboard */,
 			);
@@ -210,6 +217,9 @@
 		3D8FEA042D3BF4AB000360CE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3D79E2572D3D650900268968 /* AreaChartView.swift */,
+				3D79E2552D3D64F000268968 /* LineChartView.swift */,
+				3D79E2532D3D64DB00268968 /* BarChartView.swift */,
 				3D79E2472D3CFE8700268968 /* CategoryCell.swift */,
 				3D79E2452D3CFE6200268968 /* CustomNumberPad.swift */,
 				3D8FEA1F2D3C2D41000360CE /* PieChartView.swift */,
@@ -235,7 +245,6 @@
 				3D8FEA002D3BF4AB000360CE /* Utilities */,
 				3D8FEA012D3BF4AB000360CE /* ViewModels */,
 				3D8FEA042D3BF4AB000360CE /* Views */,
-				3D8FEA052D3BF4AB000360CE /* ViewController.swift */,
 				3D8FE9BC2D3BB304000360CE /* Info.plist */,
 			);
 			path = BudgetTrackerApp;
@@ -399,6 +408,7 @@
 				3D8FEA202D3C2D43000360CE /* PieChartView.swift in Sources */,
 				3D8FEA072D3BF4AB000360CE /* AppDelegate.swift in Sources */,
 				3D8FEA282D3C3D57000360CE /* Transaction.swift in Sources */,
+				3D79E2562D3D64F200268968 /* LineChartView.swift in Sources */,
 				3D8FEA262D3C3D33000360CE /* Budget.swift in Sources */,
 				3D8FEA082D3BF4AB000360CE /* SceneDelegate.swift in Sources */,
 				3D8FEA092D3BF4AB000360CE /* LoginViewController.swift in Sources */,
@@ -407,13 +417,15 @@
 				3D8FEA142D3C2C08000360CE /* TabBarController.swift in Sources */,
 				3D8FEA2A2D3C3D72000360CE /* BankAccount.swift in Sources */,
 				3D8FEA222D3C2FB2000360CE /* MainTabBarController.swift in Sources */,
+				3D79E2582D3D650B00268968 /* AreaChartView.swift in Sources */,
 				3D8FEA0A2D3BF4AB000360CE /* SignUpViewController.swift in Sources */,
 				3D8FEA2C2D3C3DA1000360CE /* FirebaseManager.swift in Sources */,
 				3D8FEA1A2D3C2C8F000360CE /* AddTransactionViewController.swift in Sources */,
-				3D8FEA0B2D3BF4AB000360CE /* ViewController.swift in Sources */,
+				3D79E2522D3D64B300268968 /* MockDashboardData.swift in Sources */,
 				3D8FEA1C2D3C2CB1000360CE /* AdvicesView.swift in Sources */,
 				3D8FEA182D3C2C72000360CE /* BudgetViewController.swift in Sources */,
 				3D8FEA242D3C3D17000360CE /* Category.swift in Sources */,
+				3D79E2542D3D64DD00268968 /* BarChartView.swift in Sources */,
 				3D8FEA322D3C403D000360CE /* TransactionViewModel.swift in Sources */,
 				3D79E2462D3CFE6400268968 /* CustomNumberPad.swift in Sources */,
 				3D79E2482D3CFE8900268968 /* CategoryCell.swift in Sources */,

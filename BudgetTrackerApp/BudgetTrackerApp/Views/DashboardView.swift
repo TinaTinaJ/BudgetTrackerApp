@@ -8,68 +8,123 @@
 import SwiftUI
 
 struct DashboardView: View {
+    @State private var selectedCurrency: String = "GEL"
+    @State private var totalBalance: Double = 851.00
+    
+    private let pieChartData: [Double] = [60, 40]
+    private let accountSummaries: [String] = ["Salary", "Savings"]
+    private let accountAmounts: [Double] = [500.0, 351.0]
+    private let barChartDataEarnings: [BarData] = [
+        BarData(label: "Jan", value: 500),
+        BarData(label: "Feb", value: 600),
+        BarData(label: "Mar", value: 700)
+    ]
+    private let barChartDataSpendings: [BarData] = [
+        BarData(label: "Rent", value: 300),
+        BarData(label: "Food", value: 250),
+        BarData(label: "Transport", value: 150)
+    ]
+    
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 20) {
-                // Total Balance Section
-                VStack(alignment: .center, spacing: 10) {
-                    Text("60,28")
-                        .font(.system(size: 50, weight: .bold))
-                        .foregroundColor(.black)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Picker("Currency", selection: $selectedCurrency) {
+                                Text("GEL").tag("GEL")
+                                Text("USD").tag("USD")
+                                Text("EUR").tag("EUR")
+                            }
+                            .pickerStyle(SegmentedPickerStyle())
+                            .padding()
+                            .onChange(of: selectedCurrency) { _ in
+                                if selectedCurrency == "USD" {
+                                    totalBalance = 320.00
+                                } else if selectedCurrency == "EUR" {
+                                    totalBalance = 280.00
+                                } else {
+                                    totalBalance = 851.00
+                                }
+                            }
+                            Spacer()
+                        }
 
-                    Text("Total Balance")
-                        .font(.headline)
-                        .foregroundColor(.gray)
+                        Text("\(String(format: "%.2f", totalBalance)) \(selectedCurrency)")
+                            .font(.system(size: 40, weight: .bold))
+                            .foregroundColor(.black)
+
+                        Text("Total Balance")
+                            .font(.headline)
+                            .foregroundColor(.customLightGray)
+                    }
+                    .padding()
+                    .background(Color.backgroundMint)
+                    .cornerRadius(10)
+
+                    HStack(alignment: .center) {
+                        PieChartView(
+                            data: pieChartData,
+                            labels: ["Income", "Expenses"],
+                            colors: [.brandGreen, .lightOrange]
+                        )
+                        .frame(width: 150, height: 150)
+
+                        VStack(alignment: .leading, spacing: 10) {
+                            ForEach(0..<accountSummaries.count, id: \.self) { index in
+                                HStack {
+                                    Text(accountSummaries[index])
+                                        .foregroundColor(.brandGreen)
+                                    Spacer()
+                                    Text("\(String(format: "%.2f", accountAmounts[index])) \(selectedCurrency)")
+                                        .foregroundColor(.black)
+                                }
+                            }
+                        }
+                    }
+
+                    Divider()
+                        .padding(.vertical)
+
+                    VStack(alignment: .leading, spacing: 20) {
+                        Text("Earnings this month")
+                            .font(.headline)
+                            .foregroundColor(.black)
+
+                        BarChartView(
+                            data: normalizeBarData(barChartDataEarnings),
+                            colors: [.lightBlue, .darkBlue]
+                        )
+                        .frame(height: 200)
+
+                        Text("Spent this month")
+                            .font(.headline)
+                            .foregroundColor(.black)
+
+                        BarChartView(
+                            data: normalizeBarData(barChartDataSpendings),
+                            colors: [.lightOrange, .peachBackground]
+                        )
+                        .frame(height: 200)
+                    }
                 }
-                .frame(maxWidth: .infinity)
-
-                // Pie Charts Section
-                HStack(spacing: 16) {
-                    PieChartView(data: [423.55, 577.45], labels: ["ING Account", "BRD Account"])
-                        .frame(width: 120, height: 120)
-
-                    PieChartView(data: [0.0], labels: ["Cash"])
-                        .frame(width: 120, height: 120)
-                }
-                .frame(maxWidth: .infinity)
-
-                // Placeholder Section for other charts
-                Text("Other summaries and charts will go here.")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-                    .padding(.top, 20)
-
-                Spacer()
+                .padding()
             }
-            .padding()
-            .background(Color(red: 0.976, green: 0.983, blue: 0.973).ignoresSafeArea())
+            .background(Color.backgroundMint.ignoresSafeArea())
             .navigationTitle("Dashboard")
         }
     }
+    
+    private func normalizeBarData(_ data: [BarData]) -> [BarData] {
+        guard let maxValue = data.map({ $0.value }).max() else { return data }
+        return data.map { BarData(label: $0.label, value: ($0.value / maxValue) * 150) }
+    }
 }
-
-//struct PieChartView: View {
-//    let data: [Double]
-//    let labels: [String]
-//
-//    var body: some View {
-//        VStack {
-//            // Placeholder for PieChart (Customize with your library)
-//            Circle()
-//                .fill(Color.blue)
-//                .frame(width: 100, height: 100)
-//
-//            ForEach(0..<labels.count, id: \.self) { index in
-//                Text("\(labels[index]): \(String(format: "%.2f", data[index]))")
-//                    .font(.caption)
-//                    .foregroundColor(index == 0 ? .green : .blue)
-//            }
-//        }
-//    }
-//}
 
 struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
         DashboardView()
     }
 }
+

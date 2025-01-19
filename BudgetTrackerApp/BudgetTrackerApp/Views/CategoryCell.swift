@@ -8,7 +8,6 @@ import UIKit
 
 class CategoryCell: UICollectionViewCell {
     
-    // MARK: - UI Components
     private let containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -37,7 +36,6 @@ class CategoryCell: UICollectionViewCell {
         return label
     }()
     
-    // MARK: - Properties
     override var isSelected: Bool {
         didSet {
             animate()
@@ -47,7 +45,6 @@ class CategoryCell: UICollectionViewCell {
     private var icon: String?
     private var name: String?
     
-    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -57,9 +54,7 @@ class CategoryCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setup
     private func setupUI() {
-        // Important: Enable user interaction at all levels
         contentView.isUserInteractionEnabled = true
         isUserInteractionEnabled = true
         backgroundColor = .clear
@@ -83,17 +78,15 @@ class CategoryCell: UICollectionViewCell {
             nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
         
-        // Add tap gesture for better touch feedback
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
         addGestureRecognizer(tapGesture)
     }
     
     @objc private func cellTapped() {
-        // Provide haptic feedback
+
         let generator = UIImpactFeedbackGenerator(style: .medium)
         generator.impactOccurred()
         
-        // Animate the tap
         UIView.animate(withDuration: 0.1, animations: {
             self.containerView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
         }) { _ in
@@ -112,14 +105,12 @@ class CategoryCell: UICollectionViewCell {
         }
     }
     
-    // MARK: - Configuration
     func configure(with icon: String, name: String) {
         self.icon = icon
         self.name = name
         iconLabel.text = icon
         nameLabel.text = name
         
-        // Force update of selection state
         animate()
     }
     

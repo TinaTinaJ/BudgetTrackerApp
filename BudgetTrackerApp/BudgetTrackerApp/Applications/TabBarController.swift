@@ -12,15 +12,12 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the tab bar's background color
         tabBar.barTintColor = UIColor(named: "TabBarBackgroundColor") ?? UIColor.systemBackground
         tabBar.isTranslucent = false
         
-        // Set the tint color for selected icons
         tabBar.tintColor = UIColor.white
         tabBar.unselectedItemTintColor = UIColor.lightGray
 
-        // Configure each tab with its view controller and tab bar item
         let dashboardVC = UIHostingController(rootView: DashboardView())
         dashboardVC.tabBarItem = UITabBarItem(
             title: "Dashboard",
@@ -56,7 +53,6 @@ class TabBarController: UITabBarController {
             selectedImage: UIImage(systemName: "ellipsis.circle.fill")
         )
 
-        // Assign the view controllers to the tab bar
         viewControllers = [dashboardVC, budgetVC, addTransactionVC, advicesVC, moreVC]
     }
 }

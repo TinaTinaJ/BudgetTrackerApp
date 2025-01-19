@@ -13,7 +13,6 @@ protocol CustomNumberPadDelegate: AnyObject {
 
 class CustomNumberPad: UIView {
     
-    // MARK: - Properties
     weak var delegate: CustomNumberPadDelegate?
     private var currentInput: String = "0"
     
@@ -24,7 +23,6 @@ class CustomNumberPad: UIView {
         ["C", "0", ".", "⌫"]
     ]
     
-    // MARK: - UI Components
     private let stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -34,7 +32,6 @@ class CustomNumberPad: UIView {
         return stack
     }()
     
-    // MARK: - Initialization
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -44,7 +41,6 @@ class CustomNumberPad: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setup
     private func setupUI() {
         backgroundColor = .customLightGray
         layer.cornerRadius = 12
@@ -94,7 +90,6 @@ class CustomNumberPad: UIView {
         return button
     }
     
-    // MARK: - Actions
     @objc private func buttonTapped(_ sender: UIButton) {
         guard let title = sender.title(for: .normal) else { return }
         
@@ -112,7 +107,6 @@ class CustomNumberPad: UIView {
             delegate?.numberPadDidEnterValue(currentInput)
             
         case "+", "-", "=":
-            // Operation buttons are visual only in this version
             break
             
         case ".":
