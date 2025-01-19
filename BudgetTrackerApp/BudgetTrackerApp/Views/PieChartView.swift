@@ -11,21 +11,27 @@ struct PieChartView: View {
     var labels: [String]
 
     var body: some View {
-        ZStack {
-            ForEach(0..<data.count, id: \.self) { index in
-                PieSliceView(startAngle: self.startAngle(for: index), endAngle: self.endAngle(for: index))
+        VStack {
+            ZStack {
+                ForEach(0..<data.count, id: \.self) { index in
+                    PieSliceView(
+                        startAngle: self.startAngle(for: index),
+                        endAngle: self.endAngle(for: index)
+                    )
                     .fill(self.color(for: index))
+                }
             }
-        }
-        .overlay(
-            VStack {
+            .frame(width: 150, height: 150)
+
+            // Labels
+            VStack(alignment: .leading, spacing: 8) {
                 ForEach(0..<labels.count, id: \.self) { index in
                     Text("\(labels[index]): \(String(format: "%.2f", data[index]))")
                         .font(.caption)
-                        .foregroundColor(.black)
+                        .foregroundColor(index == 0 ? .green : .blue)
                 }
             }
-        )
+        }
     }
 
     private func startAngle(for index: Int) -> Angle {
@@ -55,15 +61,23 @@ struct PieSliceView: Shape {
         let center = CGPoint(x: rect.midX, y: rect.midY)
         let radius = min(rect.width, rect.height) / 2
         path.move(to: center)
-        path.addArc(center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
+        path.addArc(
+            center: center,
+            radius: radius,
+            startAngle: startAngle,
+            endAngle: endAngle,
+            clockwise: false
+        )
         return path
     }
 }
 
 struct PieChartView_Previews: PreviewProvider {
     static var previews: some View {
-        PieChartView(data: [423.55, 577.45], labels: ["ING Account", "BRD Account"])
-            .frame(width: 200, height: 200)
+        PieChartView(
+            data: [423.55, 577.45],
+            labels: ["ING Account", "BRD Account"]
+        )
+        .frame(width: 200, height: 200)
     }
 }
-
