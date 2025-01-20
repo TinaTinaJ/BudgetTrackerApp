@@ -10,49 +10,48 @@ import SwiftUI
 struct BarChartView: View {
     let data: [BarData]
     let colors: [Color]
-
+    
     var body: some View {
-        HStack(alignment: .bottom, spacing: 8) {
-            ForEach(data.indices, id: \.self) { index in
-                let barData = data[index]
-                VStack {
-                    Text(String(format: "%.0f", barData.value))
-                        .font(.caption)
-                        .foregroundColor(.gray)
-
-                    Rectangle()
-                        .fill(colors[index % colors.count])
-                        .frame(width: 20, height: CGFloat(barData.value))
-
-                    Text(barData.label)
-                        .font(.caption)
-                        .foregroundColor(.gray)
+        GeometryReader { geometry in
+            HStack(alignment: .bottom, spacing: 16) {
+                ForEach(data) { item in
+                    VStack(spacing: 8) {
+                        Text(String(format: "%.0f", item.value))
+                            .font(.system(size: 12))
+                            .foregroundColor(.gray)
+                        
+                        RoundedRectangle(cornerRadius: 4)
+                            .fill(getBarColor(for: item.label))
+                            .frame(width: 40, height: getBarHeight(value: item.value, maxHeight: geometry.size.height * 0.7))
+                        
+                        Text(item.label)
+                            .font(.system(size: 12))
+                            .foregroundColor(.gray)
+                            .fixedSize()
+                    }
                 }
             }
+            .frame(maxWidth: .infinity)
+            .frame(height: geometry.size.height)
+            .padding(.horizontal)
         }
-        .padding()
+    }
+    
+    private func getBarHeight(value: Double, maxHeight: CGFloat) -> CGFloat {
+        let maxValue = data.map { $0.value }.max() ?? 1
+        return CGFloat(value) / CGFloat(maxValue) * maxHeight
+    }
+    
+    private func getBarColor(for label: String) -> Color {
+        switch label {
+        case "TBC", "BOG", "VTB":
+            return .lightBlue
+        case "Liberty":
+            return .lightOrange
+        case "Credo":
+            return .brandGreen
+        default:
+            return colors.first ?? .blue
+        }
     }
 }
-
-struct BarData {
-    let label: String
-    let value: Double
-}
-
-struct BarChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        BarChartView(
-            data: [
-                BarData(label: "Jan", value: 40),
-                BarData(label: "Feb", value: 70),
-                BarData(label: "Mar", value: 50),
-                BarData(label: "Apr", value: 30),
-                BarData(label: "May", value: 80)
-            ],
-            colors: [.brandGreen, .lightBlue, .lightOrange, .peachBackground]
-        )
-        .frame(height: 200)
-    }
-}
-
-

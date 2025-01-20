@@ -4,110 +4,38 @@
 //
 //  Created by Tiko on 18.01.25.
 //
-
 import SwiftUI
 
 struct DashboardView: View {
     @State private var selectedCurrency: String = "GEL"
     @State private var totalBalance: Double = 851.00
     
-    private let pieChartData: [Double] = [60, 40]
-    private let accountSummaries: [String] = ["Salary", "Savings"]
-    private let accountAmounts: [Double] = [500.0, 351.0]
-    private let barChartDataEarnings: [BarData] = [
-        BarData(label: "Jan", value: 500),
-        BarData(label: "Feb", value: 600),
-        BarData(label: "Mar", value: 700)
-    ]
-    private let barChartDataSpendings: [BarData] = [
-        BarData(label: "Rent", value: 300),
-        BarData(label: "Food", value: 250),
-        BarData(label: "Transport", value: 150)
-    ]
-    
     var body: some View {
         NavigationView {
             ScrollView {
-                VStack(alignment: .leading, spacing: 20) {
-                    VStack {
-                        HStack {
-                            Spacer()
-                            Picker("Currency", selection: $selectedCurrency) {
-                                Text("GEL").tag("GEL")
-                                Text("USD").tag("USD")
-                                Text("EUR").tag("EUR")
-                            }
-                            .pickerStyle(SegmentedPickerStyle())
-                            .padding()
-                            .onChange(of: selectedCurrency) { _ in
-                                if selectedCurrency == "USD" {
-                                    totalBalance = 320.00
-                                } else if selectedCurrency == "EUR" {
-                                    totalBalance = 280.00
-                                } else {
-                                    totalBalance = 851.00
-                                }
-                            }
-                            Spacer()
+                VStack(spacing: 20) {
+                    HStack {
+                        Spacer()
+                        Picker("Currency", selection: $selectedCurrency) {
+                            Text("GEL").tag("GEL")
+                            Text("USD").tag("USD")
+                            Text("EUR").tag("EUR")
                         }
-
-                        Text("\(String(format: "%.2f", totalBalance)) \(selectedCurrency)")
-                            .font(.system(size: 40, weight: .bold))
-                            .foregroundColor(.black)
-
-                        Text("Total Balance")
-                            .font(.headline)
-                            .foregroundColor(.customLightGray)
-                    }
-                    .padding()
-                    .background(Color.backgroundMint)
-                    .cornerRadius(10)
-
-                    HStack(alignment: .center) {
-                        PieChartView(
-                            data: pieChartData,
-                            labels: ["Income", "Expenses"],
-                            colors: [.brandGreen, .lightOrange]
-                        )
-                        .frame(width: 150, height: 150)
-
-                        VStack(alignment: .leading, spacing: 10) {
-                            ForEach(0..<accountSummaries.count, id: \.self) { index in
-                                HStack {
-                                    Text(accountSummaries[index])
-                                        .foregroundColor(.brandGreen)
-                                    Spacer()
-                                    Text("\(String(format: "%.2f", accountAmounts[index])) \(selectedCurrency)")
-                                        .foregroundColor(.black)
-                                }
-                            }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .frame(width: 200)
+                        .onChange(of: selectedCurrency) { newValue in
+                            totalBalance = MockDashboardData.shared.convertTotalBalance(to: newValue)
                         }
+                        Spacer()
                     }
-
-                    Divider()
-                        .padding(.vertical)
-
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text("Earnings this month")
-                            .font(.headline)
-                            .foregroundColor(.black)
-
-                        BarChartView(
-                            data: normalizeBarData(barChartDataEarnings),
-                            colors: [.lightBlue, .darkBlue]
-                        )
-                        .frame(height: 200)
-
-                        Text("Spent this month")
-                            .font(.headline)
-                            .foregroundColor(.black)
-
-                        BarChartView(
-                            data: normalizeBarData(barChartDataSpendings),
-                            colors: [.lightOrange, .peachBackground]
-                        )
-                        .frame(height: 200)
-                    }
+                    
+                    totalBalanceCard
+                    
+                    balanceCard
+                    
+                    monthlyStatsRow
+                    
+                    comparisonCard
                 }
                 .padding()
             }
@@ -116,15 +44,128 @@ struct DashboardView: View {
         }
     }
     
-    private func normalizeBarData(_ data: [BarData]) -> [BarData] {
-        guard let maxValue = data.map({ $0.value }).max() else { return data }
-        return data.map { BarData(label: $0.label, value: ($0.value / maxValue) * 150) }
+    private var totalBalanceCard: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack {
+                Spacer()
+                Text("\(totalBalance, specifier: "%.2f") \(selectedCurrency)")
+                    .font(.system(size: 32, weight: .bold))
+                Spacer()
+            }
+            
+            Text("Total balance")
+                .foregroundColor(.gray)
+                .frame(maxWidth: .infinity, alignment: .center)
+            
+            HStack(spacing: 24) {
+                PieChartView(
+                    data: MockDashboardData.shared.pieChartData[selectedCurrency] ?? [0, 0],
+                    labels: ["Savings", "Expenses"],
+                    colors: [.brandGreen, .lightBlue],
+                    showLabels: true
+                )
+                .frame(width: 120, height: 120)
+                
+                VStack(alignment: .leading, spacing: 12) {
+                    ForEach(MockDashboardData.shared.accountSummaries[selectedCurrency] ?? [], id: \.id) { account in
+                        HStack {
+                            Text(account.name)
+                                .foregroundColor(.gray)
+                            Spacer()
+                            Text("\(account.amount, specifier: "%.2f")")
+                            Text(selectedCurrency)
+                                .foregroundColor(.gray)
+                        }
+                    }
+                }
+            }
+        }
+        .padding(20)
+        .background(Color.white)
+        .cornerRadius(16)
+    }
+    
+    private var balanceCard: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Balance")
+                .font(.headline)
+            BarChartView(
+                data: MockDashboardData.balanceData,
+                colors: [.lightBlue, .brandGreen, .lightOrange, .brandGreen, .lightBlue]
+            )
+            .frame(height: 200)
+        }
+        .padding(20)
+        .background(Color.white)
+        .cornerRadius(16)
+    }
+    
+    private var monthlyStatsRow: some View {
+        HStack(spacing: 16) {
+            monthlyStatCard(
+                title: "Earnings\nthis month",
+                data: MockDashboardData.earningsData,
+                labels: MockDashboardData.earningsLabels,
+                colors: [.lightBlue, .brandGreen]
+            )
+            
+            monthlyStatCard(
+                title: "Spent\nthis month",
+                data: MockDashboardData.spendingData,
+                labels: MockDashboardData.spendingLabels,
+                colors: [.lightBlue, .brandGreen]
+            )
+        }
+    }
+    
+    private func monthlyStatCard(title: String, data: [Double], labels: [String], colors: [Color]) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(title)
+                .font(.headline)
+                .lineLimit(2)
+                .fixedSize(horizontal: false, vertical: true)
+            
+            PieChartView(
+                data: data,
+                labels: labels,
+                colors: colors,
+                showLabels: true
+            )
+            .frame(height: 120)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(16)
+        .background(Color.white)
+        .cornerRadius(16)
+    }
+    
+    private var comparisonCard: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Comparing between periods")
+                .font(.headline)
+            
+            MultiLineChartView(data: MockDashboardData.comparisonData)
+                .frame(height: 200)
+            
+            HStack(spacing: 16) {
+                legendItem(color: .orange, text: "One year ago")
+                legendItem(color: .lightBlue, text: "Two years ago")
+                legendItem(color: .brandGreen, text: "Present")
+            }
+        }
+        .padding(20)
+        .background(Color.white)
+        .cornerRadius(16)
+    }
+    
+    private func legendItem(color: Color, text: String) -> some View {
+        HStack(spacing: 8) {
+            Circle()
+                .fill(color)
+                .frame(width: 8, height: 8)
+            Text(text)
+                .font(.caption)
+                .foregroundColor(.gray)
+        }
     }
 }
-
-struct DashboardView_Previews: PreviewProvider {
-    static var previews: some View {
-        DashboardView()
-    }
-}
-

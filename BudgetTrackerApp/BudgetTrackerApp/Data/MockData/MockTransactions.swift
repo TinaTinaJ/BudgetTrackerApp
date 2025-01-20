@@ -5,8 +5,6 @@
 //  Created by Tiko on 19.01.25.
 //
 
-// MockTransactions.swift
-
 import Foundation
 
 struct MockTransaction {

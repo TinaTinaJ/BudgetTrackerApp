@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D0BCBFB2D3EC5B400DC38EF /* DashboardModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0BCBFA2D3EC5AF00DC38EF /* DashboardModels.swift */; };
+		3D73F5A32D3ED1B100858131 /* MultiLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D73F5A22D3ED1AF00858131 /* MultiLineChartView.swift */; };
+		3D73F5A72D3ED98300858131 /* Codable+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D73F5A42D3ED98300858131 /* Codable+Dictionary.swift */; };
+		3D73F5A82D3ED98300858131 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D73F5A52D3ED98300858131 /* ColorExtensions.swift */; };
 		3D79E2462D3CFE6400268968 /* CustomNumberPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2452D3CFE6200268968 /* CustomNumberPad.swift */; };
 		3D79E2482D3CFE8900268968 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2472D3CFE8700268968 /* CategoryCell.swift */; };
 		3D79E2522D3D64B300268968 /* MockDashboardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2512D3D64B000268968 /* MockDashboardData.swift */; };
@@ -63,6 +67,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D0BCBFA2D3EC5AF00DC38EF /* DashboardModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardModels.swift; sourceTree = "<group>"; };
+		3D73F5A22D3ED1AF00858131 /* MultiLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineChartView.swift; sourceTree = "<group>"; };
+		3D73F5A42D3ED98300858131 /* Codable+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Dictionary.swift"; sourceTree = "<group>"; };
+		3D73F5A52D3ED98300858131 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		3D79E2452D3CFE6200268968 /* CustomNumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNumberPad.swift; sourceTree = "<group>"; };
 		3D79E2472D3CFE8700268968 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		3D79E2512D3D64B000268968 /* MockDashboardData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDashboardData.swift; sourceTree = "<group>"; };
@@ -111,11 +119,6 @@
 			path = BudgetTrackerAppUITests;
 			sourceTree = "<group>";
 		};
-		3D8FEA2D2D3C3E71000360CE /* Extentions */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Extentions;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +149,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D73F5A62D3ED98300858131 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				3D73F5A42D3ED98300858131 /* Codable+Dictionary.swift */,
+				3D73F5A52D3ED98300858131 /* ColorExtensions.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
 		3D79E2662D3D8A7100268968 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -169,7 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				3D8FEA002D3BF4AB000360CE /* Utilities */,
-				3D8FEA2D2D3C3E71000360CE /* Extentions */,
+				3D73F5A62D3ED98300858131 /* Extentions */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -294,6 +306,7 @@
 		3D79E2762D3D8DB500268968 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				3D0BCBFA2D3EC5AF00DC38EF /* DashboardModels.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -320,6 +333,7 @@
 		3D79E2792D3D8E2C00268968 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3D73F5A22D3ED1AF00858131 /* MultiLineChartView.swift */,
 				3D79E2572D3D650900268968 /* AreaChartView.swift */,
 				3D79E2552D3D64F000268968 /* LineChartView.swift */,
 				3D8FEA1F2D3C2D41000360CE /* PieChartView.swift */,
@@ -420,9 +434,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				3D8FEA2D2D3C3E71000360CE /* Extentions */,
 			);
 			name = BudgetTrackerApp;
 			packageProductDependencies = (
@@ -564,6 +575,8 @@
 				3D8FEA202D3C2D43000360CE /* PieChartView.swift in Sources */,
 				3D8FEA072D3BF4AB000360CE /* AppDelegate.swift in Sources */,
 				3D79E25F2D3D7CEF00268968 /* MockTransactions.swift in Sources */,
+				3D73F5A72D3ED98300858131 /* Codable+Dictionary.swift in Sources */,
+				3D73F5A82D3ED98300858131 /* ColorExtensions.swift in Sources */,
 				3D8FEA282D3C3D57000360CE /* Transaction.swift in Sources */,
 				3D79E2562D3D64F200268968 /* LineChartView.swift in Sources */,
 				3D8FEA262D3C3D33000360CE /* Budget.swift in Sources */,
@@ -579,12 +592,14 @@
 				3D79E2582D3D650B00268968 /* AreaChartView.swift in Sources */,
 				3D8FEA0A2D3BF4AB000360CE /* SignUpViewController.swift in Sources */,
 				3D8FEA2C2D3C3DA1000360CE /* FirebaseManager.swift in Sources */,
+				3D73F5A32D3ED1B100858131 /* MultiLineChartView.swift in Sources */,
 				3D8FEA1A2D3C2C8F000360CE /* AddTransactionViewController.swift in Sources */,
 				3D79E2522D3D64B300268968 /* MockDashboardData.swift in Sources */,
 				3D79E2632D3D7E5700268968 /* ExpenseCell.swift in Sources */,
 				3D8FEA1C2D3C2CB1000360CE /* AdvicesView.swift in Sources */,
 				3D8FEA182D3C2C72000360CE /* BudgetViewController.swift in Sources */,
 				3D8FEA242D3C3D17000360CE /* Category.swift in Sources */,
+				3D0BCBFB2D3EC5B400DC38EF /* DashboardModels.swift in Sources */,
 				3D79E2542D3D64DD00268968 /* BarChartView.swift in Sources */,
 				3D8FEA322D3C403D000360CE /* TransactionViewModel.swift in Sources */,
 				3D79E2462D3CFE6400268968 /* CustomNumberPad.swift in Sources */,
