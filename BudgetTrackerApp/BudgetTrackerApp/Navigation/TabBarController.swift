@@ -8,51 +8,64 @@ import UIKit
 import SwiftUI
 
 class TabBarController: UITabBarController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.barTintColor = UIColor(named: "TabBarBackgroundColor") ?? UIColor.systemBackground
-        tabBar.isTranslucent = false
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(red: 0/255, green: 33/255, blue: 23/255, alpha: 1)
         
-        tabBar.tintColor = UIColor.white
-        tabBar.unselectedItemTintColor = UIColor.lightGray
-
+        let borderColor = UIColor(red: 112/255, green: 121/255, blue: 116/255, alpha: 1)
+        appearance.shadowColor = borderColor
+        
+        tabBar.standardAppearance = appearance
+        if #available(iOS 15.0, *) {
+            tabBar.scrollEdgeAppearance = appearance
+        }
+        
+        tabBar.tintColor = .white
+        tabBar.unselectedItemTintColor = borderColor
+        
         let dashboardVC = UIHostingController(rootView: DashboardView())
-        dashboardVC.tabBarItem = UITabBarItem(
-            title: "Dashboard",
-            image: UIImage(systemName: "house.fill"),
-            selectedImage: UIImage(systemName: "house.fill")
-        )
+        configureTabBarItem(for: dashboardVC, title: "Dashboard", image: "house.fill", tag: 0)
         
         let budgetVC = BudgetViewController()
-        budgetVC.tabBarItem = UITabBarItem(
-            title: "Budget",
-            image: UIImage(systemName: "chart.pie.fill"),
-            selectedImage: UIImage(systemName: "chart.pie.fill")
-        )
-
+        configureTabBarItem(for: budgetVC, title: "Budget", image: "chart.pie.fill", tag: 1)
+        
         let addTransactionVC = AddTransactionViewController()
-        addTransactionVC.tabBarItem = UITabBarItem(
-            title: "Add",
-            image: UIImage(systemName: "plus.circle.fill"),
-            selectedImage: UIImage(systemName: "plus.circle.fill")
-        )
-
+        configureTabBarItem(for: addTransactionVC, title: "Add", image: "plus.circle.fill", tag: 2)
+        
         let advicesVC = UIHostingController(rootView: AdvicesView())
-        advicesVC.tabBarItem = UITabBarItem(
-            title: "Advices",
-            image: UIImage(systemName: "lightbulb.fill"),
-            selectedImage: UIImage(systemName: "lightbulb.fill")
-        )
-
+        configureTabBarItem(for: advicesVC, title: "Advices", image: "lightbulb.fill", tag: 3)
+        
         let moreVC = MoreViewController()
-        moreVC.tabBarItem = UITabBarItem(
-            title: "More",
-            image: UIImage(systemName: "ellipsis.circle.fill"),
-            selectedImage: UIImage(systemName: "ellipsis.circle.fill")
-        )
-
+        configureTabBarItem(for: moreVC, title: "More", image: "ellipsis.circle.fill", tag: 4)
+        
         viewControllers = [dashboardVC, budgetVC, addTransactionVC, advicesVC, moreVC]
+    }
+    
+    private func configureTabBarItem(for viewController: UIViewController, title: String, image: String, tag: Int) {
+        let item = UITabBarItem(
+            title: title,
+            image: UIImage(systemName: image),
+            tag: tag
+        )
+        
+        let normalAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor(red: 112/255, green: 121/255, blue: 116/255, alpha: 1),
+            .font: UIFont.systemFont(ofSize: 12)
+        ]
+        
+        let selectedAttributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.white,
+            .font: UIFont.systemFont(ofSize: 12)
+        ]
+        
+        item.setTitleTextAttributes(normalAttributes, for: .normal)
+        item.setTitleTextAttributes(selectedAttributes, for: .selected)
+        
+        item.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+        
+        viewController.tabBarItem = item
     }
 }
