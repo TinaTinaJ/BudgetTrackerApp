@@ -8,6 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		3D0BCBFB2D3EC5B400DC38EF /* DashboardModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0BCBFA2D3EC5AF00DC38EF /* DashboardModels.swift */; };
+		3D0EC9562D40247C0085514B /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC9552D4024790085514B /* TransactionModel.swift */; };
+		3D0EC9582D4024BA0085514B /* ExpenseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC9572D4024B80085514B /* ExpenseModel.swift */; };
+		3D0EC95A2D4024DB0085514B /* GoalModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC9592D4024DA0085514B /* GoalModel.swift */; };
+		3D0EC95D2D4026DF0085514B /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC95C2D4026DE0085514B /* TransactionCell.swift */; };
+		3D0EC95F2D4027120085514B /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC95E2D40270F0085514B /* ExpenseCell.swift */; };
+		3D0EC9612D4027320085514B /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC9602D4027310085514B /* GoalCell.swift */; };
+		3D0EC9652D4028140085514B /* ExpenseChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC9642D4028120085514B /* ExpenseChartCell.swift */; };
+		3D0EC96D2D4030F70085514B /* BudgetPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC96C2D4030F50085514B /* BudgetPieChartView.swift */; };
+		3D0EC96F2D4037380085514B /* ExpenseToBePaidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC96E2D4037370085514B /* ExpenseToBePaidCell.swift */; };
+		3D0EC9712D4037F70085514B /* AddGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC9702D4037F60085514B /* AddGoalCell.swift */; };
 		3D73F5A32D3ED1B100858131 /* MultiLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D73F5A22D3ED1AF00858131 /* MultiLineChartView.swift */; };
 		3D73F5A72D3ED98300858131 /* Codable+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D73F5A42D3ED98300858131 /* Codable+Dictionary.swift */; };
 		3D73F5A82D3ED98300858131 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D73F5A52D3ED98300858131 /* ColorExtensions.swift */; };
@@ -18,9 +28,6 @@
 		3D79E2562D3D64F200268968 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2552D3D64F000268968 /* LineChartView.swift */; };
 		3D79E2582D3D650B00268968 /* AreaChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2572D3D650900268968 /* AreaChartView.swift */; };
 		3D79E25F2D3D7CEF00268968 /* MockTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E25E2D3D7CED00268968 /* MockTransactions.swift */; };
-		3D79E2612D3D7D8400268968 /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2602D3D7D7800268968 /* TransactionCell.swift */; };
-		3D79E2632D3D7E5700268968 /* ExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2622D3D7E5600268968 /* ExpenseCell.swift */; };
-		3D79E2652D3D7E6B00268968 /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2642D3D7E6900268968 /* GoalCell.swift */; };
 		3D8FE9EF2D3BEC53000360CE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3D8FE9EE2D3BEC53000360CE /* FirebaseAuth */; };
 		3D8FE9F12D3BEC53000360CE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 3D8FE9F02D3BEC53000360CE /* FirebaseCore */; };
 		3D8FE9F32D3BEC53000360CE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3D8FE9F22D3BEC53000360CE /* FirebaseFirestore */; };
@@ -43,10 +50,8 @@
 		3D8FEA222D3C2FB2000360CE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FEA212D3C2FB0000360CE /* MainTabBarController.swift */; };
 		3D8FEA242D3C3D17000360CE /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FEA232D3C3D15000360CE /* Category.swift */; };
 		3D8FEA262D3C3D33000360CE /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FEA252D3C3D31000360CE /* Budget.swift */; };
-		3D8FEA282D3C3D57000360CE /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FEA272D3C3D54000360CE /* Transaction.swift */; };
 		3D8FEA2A2D3C3D72000360CE /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FEA292D3C3D71000360CE /* BankAccount.swift */; };
 		3D8FEA2C2D3C3DA1000360CE /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FEA2B2D3C3D9E000360CE /* FirebaseManager.swift */; };
-		3D8FEA322D3C403D000360CE /* TransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D8FEA312D3C403A000360CE /* TransactionViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +73,16 @@
 
 /* Begin PBXFileReference section */
 		3D0BCBFA2D3EC5AF00DC38EF /* DashboardModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardModels.swift; sourceTree = "<group>"; };
+		3D0EC9552D4024790085514B /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		3D0EC9572D4024B80085514B /* ExpenseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseModel.swift; sourceTree = "<group>"; };
+		3D0EC9592D4024DA0085514B /* GoalModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalModel.swift; sourceTree = "<group>"; };
+		3D0EC95C2D4026DE0085514B /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
+		3D0EC95E2D40270F0085514B /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
+		3D0EC9602D4027310085514B /* GoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
+		3D0EC9642D4028120085514B /* ExpenseChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseChartCell.swift; sourceTree = "<group>"; };
+		3D0EC96C2D4030F50085514B /* BudgetPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetPieChartView.swift; sourceTree = "<group>"; };
+		3D0EC96E2D4037370085514B /* ExpenseToBePaidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseToBePaidCell.swift; sourceTree = "<group>"; };
+		3D0EC9702D4037F60085514B /* AddGoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalCell.swift; sourceTree = "<group>"; };
 		3D73F5A22D3ED1AF00858131 /* MultiLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineChartView.swift; sourceTree = "<group>"; };
 		3D73F5A42D3ED98300858131 /* Codable+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Dictionary.swift"; sourceTree = "<group>"; };
 		3D73F5A52D3ED98300858131 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
@@ -78,9 +93,6 @@
 		3D79E2552D3D64F000268968 /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		3D79E2572D3D650900268968 /* AreaChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreaChartView.swift; sourceTree = "<group>"; };
 		3D79E25E2D3D7CED00268968 /* MockTransactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTransactions.swift; sourceTree = "<group>"; };
-		3D79E2602D3D7D7800268968 /* TransactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
-		3D79E2622D3D7E5600268968 /* ExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCell.swift; sourceTree = "<group>"; };
-		3D79E2642D3D7E6900268968 /* GoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
 		3D8FE9AB2D3BB303000360CE /* BudgetTrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetTrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D8FE9BC2D3BB304000360CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D8FE9C12D3BB304000360CE /* BudgetTrackerAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BudgetTrackerAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,10 +114,8 @@
 		3D8FEA212D3C2FB0000360CE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3D8FEA232D3C3D15000360CE /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		3D8FEA252D3C3D31000360CE /* Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
-		3D8FEA272D3C3D54000360CE /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		3D8FEA292D3C3D71000360CE /* BankAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
 		3D8FEA2B2D3C3D9E000360CE /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
-		3D8FEA312D3C403A000360CE /* TransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -149,6 +159,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D0EC95B2D4026D00085514B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3D0EC9702D4037F60085514B /* AddGoalCell.swift */,
+				3D0EC96E2D4037370085514B /* ExpenseToBePaidCell.swift */,
+				3D0EC9642D4028120085514B /* ExpenseChartCell.swift */,
+				3D0EC9602D4027310085514B /* GoalCell.swift */,
+				3D0EC95E2D40270F0085514B /* ExpenseCell.swift */,
+				3D0EC95C2D4026DE0085514B /* TransactionCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		3D73F5A62D3ED98300858131 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,8 +276,9 @@
 		3D79E2702D3D8CD700268968 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3D0EC95B2D4026D00085514B /* Cells */,
 				3D8FEA172D3C2C6F000360CE /* BudgetViewController.swift */,
-				3D79E2642D3D7E6900268968 /* GoalCell.swift */,
+				3D0EC96C2D4030F50085514B /* BudgetPieChartView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -278,7 +302,6 @@
 		3D79E2732D3D8D3500268968 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				3D8FEA312D3C403A000360CE /* TransactionViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -287,8 +310,6 @@
 			isa = PBXGroup;
 			children = (
 				3D8FEA192D3C2C8D000360CE /* AddTransactionViewController.swift */,
-				3D79E2602D3D7D7800268968 /* TransactionCell.swift */,
-				3D79E2622D3D7E5600268968 /* ExpenseCell.swift */,
 				3D79E2452D3CFE6200268968 /* CustomNumberPad.swift */,
 			);
 			path = Views;
@@ -383,8 +404,10 @@
 		3D8FE9FB2D3BF4AB000360CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3D0EC9592D4024DA0085514B /* GoalModel.swift */,
+				3D0EC9572D4024B80085514B /* ExpenseModel.swift */,
+				3D0EC9552D4024790085514B /* TransactionModel.swift */,
 				3D8FEA292D3C3D71000360CE /* BankAccount.swift */,
-				3D8FEA272D3C3D54000360CE /* Transaction.swift */,
 				3D8FEA252D3C3D31000360CE /* Budget.swift */,
 				3D8FEA232D3C3D15000360CE /* Category.swift */,
 			);
@@ -577,31 +600,36 @@
 				3D79E25F2D3D7CEF00268968 /* MockTransactions.swift in Sources */,
 				3D73F5A72D3ED98300858131 /* Codable+Dictionary.swift in Sources */,
 				3D73F5A82D3ED98300858131 /* ColorExtensions.swift in Sources */,
-				3D8FEA282D3C3D57000360CE /* Transaction.swift in Sources */,
+				3D0EC96D2D4030F70085514B /* BudgetPieChartView.swift in Sources */,
 				3D79E2562D3D64F200268968 /* LineChartView.swift in Sources */,
 				3D8FEA262D3C3D33000360CE /* Budget.swift in Sources */,
 				3D8FEA082D3BF4AB000360CE /* SceneDelegate.swift in Sources */,
+				3D0EC9562D40247C0085514B /* TransactionModel.swift in Sources */,
+				3D0EC9712D4037F70085514B /* AddGoalCell.swift in Sources */,
 				3D8FEA092D3BF4AB000360CE /* LoginViewController.swift in Sources */,
-				3D79E2652D3D7E6B00268968 /* GoalCell.swift in Sources */,
 				3D8FEA162D3C2C39000360CE /* DashboardView.swift in Sources */,
+				3D0EC95A2D4024DB0085514B /* GoalModel.swift in Sources */,
 				3D8FEA1E2D3C2CCB000360CE /* MoreViewController.swift in Sources */,
+				3D0EC9612D4027320085514B /* GoalCell.swift in Sources */,
 				3D8FEA142D3C2C08000360CE /* TabBarController.swift in Sources */,
+				3D0EC96F2D4037380085514B /* ExpenseToBePaidCell.swift in Sources */,
 				3D8FEA2A2D3C3D72000360CE /* BankAccount.swift in Sources */,
+				3D0EC95F2D4027120085514B /* ExpenseCell.swift in Sources */,
 				3D8FEA222D3C2FB2000360CE /* MainTabBarController.swift in Sources */,
-				3D79E2612D3D7D8400268968 /* TransactionCell.swift in Sources */,
 				3D79E2582D3D650B00268968 /* AreaChartView.swift in Sources */,
+				3D0EC9652D4028140085514B /* ExpenseChartCell.swift in Sources */,
 				3D8FEA0A2D3BF4AB000360CE /* SignUpViewController.swift in Sources */,
 				3D8FEA2C2D3C3DA1000360CE /* FirebaseManager.swift in Sources */,
 				3D73F5A32D3ED1B100858131 /* MultiLineChartView.swift in Sources */,
 				3D8FEA1A2D3C2C8F000360CE /* AddTransactionViewController.swift in Sources */,
 				3D79E2522D3D64B300268968 /* MockDashboardData.swift in Sources */,
-				3D79E2632D3D7E5700268968 /* ExpenseCell.swift in Sources */,
 				3D8FEA1C2D3C2CB1000360CE /* AdvicesView.swift in Sources */,
 				3D8FEA182D3C2C72000360CE /* BudgetViewController.swift in Sources */,
 				3D8FEA242D3C3D17000360CE /* Category.swift in Sources */,
+				3D0EC95D2D4026DF0085514B /* TransactionCell.swift in Sources */,
 				3D0BCBFB2D3EC5B400DC38EF /* DashboardModels.swift in Sources */,
 				3D79E2542D3D64DD00268968 /* BarChartView.swift in Sources */,
-				3D8FEA322D3C403D000360CE /* TransactionViewModel.swift in Sources */,
+				3D0EC9582D4024BA0085514B /* ExpenseModel.swift in Sources */,
 				3D79E2462D3CFE6400268968 /* CustomNumberPad.swift in Sources */,
 				3D79E2482D3CFE8900268968 /* CategoryCell.swift in Sources */,
 			);
