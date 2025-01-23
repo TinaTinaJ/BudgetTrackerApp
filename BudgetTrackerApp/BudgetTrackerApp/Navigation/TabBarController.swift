@@ -38,7 +38,7 @@ class TabBarController: UITabBarController {
         let advicesVC = UIHostingController(rootView: AdvicesView())
         configureTabBarItem(for: advicesVC, title: "Advices", image: "lightbulb.fill", tag: 3)
         
-        let moreVC = MoreViewController()
+        let moreVC = MoreMenuHostingController(rootView: MoreMenuView())
         configureTabBarItem(for: moreVC, title: "More", image: "ellipsis.circle.fill", tag: 4)
         
         viewControllers = [dashboardVC, budgetVC, addTransactionVC, advicesVC, moreVC]

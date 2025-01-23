@@ -47,7 +47,8 @@ class MainTabBarController: UITabBarController {
             tag: 2
         )
         
-        let moreView = MoreViewController()
+        // Updated More tab to use the new SwiftUI view
+        let moreView = MoreMenuHostingController(rootView: MoreMenuView())
         moreView.tabBarItem = createTabBarItem(
             title: "More",
             image: "ellipsis.circle.fill",
@@ -82,4 +83,3 @@ class MainTabBarController: UITabBarController {
         return item
     }
 }
-

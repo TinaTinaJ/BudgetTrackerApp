@@ -18,6 +18,15 @@
 		3D0EC96D2D4030F70085514B /* BudgetPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC96C2D4030F50085514B /* BudgetPieChartView.swift */; };
 		3D0EC96F2D4037380085514B /* ExpenseToBePaidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC96E2D4037370085514B /* ExpenseToBePaidCell.swift */; };
 		3D0EC9712D4037F70085514B /* AddGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC9702D4037F60085514B /* AddGoalCell.swift */; };
+		3D44B4C42D42A6CE00CFB770 /* MoreMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4C32D42A6C200CFB770 /* MoreMenuItem.swift */; };
+		3D44B4C62D42A6EE00CFB770 /* MoreMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4C52D42A6EC00CFB770 /* MoreMenuViewModel.swift */; };
+		3D44B4C82D42A70F00CFB770 /* MoreMenuItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4C72D42A70E00CFB770 /* MoreMenuItemRow.swift */; };
+		3D44B4CA2D42A72400CFB770 /* MoreMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4C92D42A72200CFB770 /* MoreMenuView.swift */; };
+		3D44B4CC2D42A81B00CFB770 /* MoreMenuHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4CB2D42A81800CFB770 /* MoreMenuHostingController.swift */; };
+		3D44B4CE2D42AFE200CFB770 /* BankCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4CD2D42AFE100CFB770 /* BankCard.swift */; };
+		3D44B4D02D42B01500CFB770 /* CardsAccountsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4CF2D42B01400CFB770 /* CardsAccountsViewModel.swift */; };
+		3D44B4D22D42B02C00CFB770 /* CardItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4D12D42B02B00CFB770 /* CardItemView.swift */; };
+		3D44B4D42D42B05500CFB770 /* CardsAccountsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4D32D42B05300CFB770 /* CardsAccountsView.swift */; };
 		3D73F5A32D3ED1B100858131 /* MultiLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D73F5A22D3ED1AF00858131 /* MultiLineChartView.swift */; };
 		3D73F5A72D3ED98300858131 /* Codable+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D73F5A42D3ED98300858131 /* Codable+Dictionary.swift */; };
 		3D73F5A82D3ED98300858131 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D73F5A52D3ED98300858131 /* ColorExtensions.swift */; };
@@ -83,6 +92,15 @@
 		3D0EC96C2D4030F50085514B /* BudgetPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetPieChartView.swift; sourceTree = "<group>"; };
 		3D0EC96E2D4037370085514B /* ExpenseToBePaidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseToBePaidCell.swift; sourceTree = "<group>"; };
 		3D0EC9702D4037F60085514B /* AddGoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalCell.swift; sourceTree = "<group>"; };
+		3D44B4C32D42A6C200CFB770 /* MoreMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuItem.swift; sourceTree = "<group>"; };
+		3D44B4C52D42A6EC00CFB770 /* MoreMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuViewModel.swift; sourceTree = "<group>"; };
+		3D44B4C72D42A70E00CFB770 /* MoreMenuItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuItemRow.swift; sourceTree = "<group>"; };
+		3D44B4C92D42A72200CFB770 /* MoreMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuView.swift; sourceTree = "<group>"; };
+		3D44B4CB2D42A81800CFB770 /* MoreMenuHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuHostingController.swift; sourceTree = "<group>"; };
+		3D44B4CD2D42AFE100CFB770 /* BankCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCard.swift; sourceTree = "<group>"; };
+		3D44B4CF2D42B01400CFB770 /* CardsAccountsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAccountsViewModel.swift; sourceTree = "<group>"; };
+		3D44B4D12D42B02B00CFB770 /* CardItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardItemView.swift; sourceTree = "<group>"; };
+		3D44B4D32D42B05300CFB770 /* CardsAccountsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAccountsView.swift; sourceTree = "<group>"; };
 		3D73F5A22D3ED1AF00858131 /* MultiLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineChartView.swift; sourceTree = "<group>"; };
 		3D73F5A42D3ED98300858131 /* Codable+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Dictionary.swift"; sourceTree = "<group>"; };
 		3D73F5A52D3ED98300858131 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
@@ -172,6 +190,45 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		3D44B4BF2D42A61C00CFB770 /* MoreMenu */ = {
+			isa = PBXGroup;
+			children = (
+				3D44B4C22D42A6AF00CFB770 /* Models */,
+				3D44B4C12D42A63C00CFB770 /* ViewModels */,
+				3D44B4C02D42A62A00CFB770 /* Views */,
+			);
+			path = MoreMenu;
+			sourceTree = "<group>";
+		};
+		3D44B4C02D42A62A00CFB770 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3D44B4D32D42B05300CFB770 /* CardsAccountsView.swift */,
+				3D44B4D12D42B02B00CFB770 /* CardItemView.swift */,
+				3D44B4C92D42A72200CFB770 /* MoreMenuView.swift */,
+				3D44B4C72D42A70E00CFB770 /* MoreMenuItemRow.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3D44B4C12D42A63C00CFB770 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				3D44B4CF2D42B01400CFB770 /* CardsAccountsViewModel.swift */,
+				3D44B4C52D42A6EC00CFB770 /* MoreMenuViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		3D44B4C22D42A6AF00CFB770 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3D44B4CD2D42AFE100CFB770 /* BankCard.swift */,
+				3D44B4C32D42A6C200CFB770 /* MoreMenuItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		3D73F5A62D3ED98300858131 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				3D79E26C2D3D8C6800268968 /* Authentication */,
+				3D44B4BF2D42A61C00CFB770 /* MoreMenu */,
 				3D79E2752D3D8DA700268968 /* Dashboard */,
 				3D79E2782D3D8E2200268968 /* Charts */,
 				3D79E26F2D3D8CCD00268968 /* Budget */,
@@ -368,6 +426,7 @@
 			children = (
 				3D8FEA212D3C2FB0000360CE /* MainTabBarController.swift */,
 				3D8FEA132D3C2C02000360CE /* TabBarController.swift */,
+				3D44B4CB2D42A81800CFB770 /* MoreMenuHostingController.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -600,15 +659,19 @@
 				3D79E25F2D3D7CEF00268968 /* MockTransactions.swift in Sources */,
 				3D73F5A72D3ED98300858131 /* Codable+Dictionary.swift in Sources */,
 				3D73F5A82D3ED98300858131 /* ColorExtensions.swift in Sources */,
+				3D44B4D22D42B02C00CFB770 /* CardItemView.swift in Sources */,
 				3D0EC96D2D4030F70085514B /* BudgetPieChartView.swift in Sources */,
 				3D79E2562D3D64F200268968 /* LineChartView.swift in Sources */,
+				3D44B4C82D42A70F00CFB770 /* MoreMenuItemRow.swift in Sources */,
 				3D8FEA262D3C3D33000360CE /* Budget.swift in Sources */,
 				3D8FEA082D3BF4AB000360CE /* SceneDelegate.swift in Sources */,
 				3D0EC9562D40247C0085514B /* TransactionModel.swift in Sources */,
+				3D44B4CA2D42A72400CFB770 /* MoreMenuView.swift in Sources */,
 				3D0EC9712D4037F70085514B /* AddGoalCell.swift in Sources */,
 				3D8FEA092D3BF4AB000360CE /* LoginViewController.swift in Sources */,
 				3D8FEA162D3C2C39000360CE /* DashboardView.swift in Sources */,
 				3D0EC95A2D4024DB0085514B /* GoalModel.swift in Sources */,
+				3D44B4C62D42A6EE00CFB770 /* MoreMenuViewModel.swift in Sources */,
 				3D8FEA1E2D3C2CCB000360CE /* MoreViewController.swift in Sources */,
 				3D0EC9612D4027320085514B /* GoalCell.swift in Sources */,
 				3D8FEA142D3C2C08000360CE /* TabBarController.swift in Sources */,
@@ -619,14 +682,19 @@
 				3D79E2582D3D650B00268968 /* AreaChartView.swift in Sources */,
 				3D0EC9652D4028140085514B /* ExpenseChartCell.swift in Sources */,
 				3D8FEA0A2D3BF4AB000360CE /* SignUpViewController.swift in Sources */,
+				3D44B4D42D42B05500CFB770 /* CardsAccountsView.swift in Sources */,
 				3D8FEA2C2D3C3DA1000360CE /* FirebaseManager.swift in Sources */,
 				3D73F5A32D3ED1B100858131 /* MultiLineChartView.swift in Sources */,
+				3D44B4C42D42A6CE00CFB770 /* MoreMenuItem.swift in Sources */,
+				3D44B4CC2D42A81B00CFB770 /* MoreMenuHostingController.swift in Sources */,
 				3D8FEA1A2D3C2C8F000360CE /* AddTransactionViewController.swift in Sources */,
 				3D79E2522D3D64B300268968 /* MockDashboardData.swift in Sources */,
 				3D8FEA1C2D3C2CB1000360CE /* AdvicesView.swift in Sources */,
 				3D8FEA182D3C2C72000360CE /* BudgetViewController.swift in Sources */,
 				3D8FEA242D3C3D17000360CE /* Category.swift in Sources */,
+				3D44B4D02D42B01500CFB770 /* CardsAccountsViewModel.swift in Sources */,
 				3D0EC95D2D4026DF0085514B /* TransactionCell.swift in Sources */,
+				3D44B4CE2D42AFE200CFB770 /* BankCard.swift in Sources */,
 				3D0BCBFB2D3EC5B400DC38EF /* DashboardModels.swift in Sources */,
 				3D79E2542D3D64DD00268968 /* BarChartView.swift in Sources */,
 				3D0EC9582D4024BA0085514B /* ExpenseModel.swift in Sources */,
