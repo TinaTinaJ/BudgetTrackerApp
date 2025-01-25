@@ -19,10 +19,10 @@ class CustomNumberPad: UIView {
     private var hasDecimalPoint: Bool = false
     
     private let buttonTitles = [
-        ["1", "2", "3", "+"],
-        ["4", "5", "6", "-"],
-        ["7", "8", "9", "="],
-        ["C", "0", ".", "⌫"]
+        ["1", "2", "3"],
+        ["4", "5", "6"],
+        ["7", "8", "9"],
+        [".", "0", "⌫"]
     ]
     
     private let stackView: UIStackView = {

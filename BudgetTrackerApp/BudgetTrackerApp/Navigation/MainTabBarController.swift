@@ -13,7 +13,7 @@ class MainTabBarController: UITabBarController {
         
         let appearance = UITabBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor(red: 0/255, green: 33/255, blue: 23/255, alpha: 1)
+        appearance.backgroundColor = UIColor(red: 0/255, green: 81/255, blue: 61/255, alpha: 1)
         
         let borderColor = UIColor(red: 112/255, green: 121/255, blue: 116/255, alpha: 1)
         appearance.shadowColor = borderColor
@@ -47,7 +47,6 @@ class MainTabBarController: UITabBarController {
             tag: 2
         )
         
-        // Updated More tab to use the new SwiftUI view
         let moreView = MoreMenuHostingController(rootView: MoreMenuView())
         moreView.tabBarItem = createTabBarItem(
             title: "More",
