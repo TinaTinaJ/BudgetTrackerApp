@@ -108,8 +108,8 @@ struct MoreMenuView: View {
             }
             .navigationBarTitle("More", displayMode: .inline)
         }
-        .onChange(of: viewModel.shouldNavigateToLogin) { shouldNavigate in
-            if shouldNavigate {
+        .onChange(of: viewModel.shouldNavigateToLogin) { oldValue, newValue in
+            if newValue {
                 if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                    let window = windowScene.windows.first {
                     window.rootViewController = LoginViewController()

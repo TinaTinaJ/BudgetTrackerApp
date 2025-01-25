@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
         button.backgroundColor = UIColor(red: 0.31, green: 0.73, blue: 0.55, alpha: 1)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(signInButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -66,7 +66,7 @@ class LoginViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(UIColor(red: 0.31, green: 0.73, blue: 0.55, alpha: 1), for: .normal)
-        button.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+        button.addTarget(nil, action: #selector(signUpButtonTapped), for: .touchUpInside)
         return button
     }()
 

@@ -37,7 +37,7 @@ struct PieSliceView: View {
                 progress = 1
             }
         }
-        .onChange(of: endAngle) { _ in
+        .onChange(of: endAngle) { oldValue, newValue in
             progress = 0
             withAnimation(.easeOut(duration: 1.0)) {
                 progress = 1
@@ -103,7 +103,7 @@ struct PieChartView: View {
                 isAnimating = true
             }
         }
-        .onChange(of: data) { _ in
+        .onChange(of: data) { oldValue, newValue in
             isAnimating = false
             withAnimation(.easeIn(duration: 1.0).delay(0.5)) {
                 isAnimating = true

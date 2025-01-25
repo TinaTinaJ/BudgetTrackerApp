@@ -23,7 +23,7 @@ struct DashboardView: View {
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .frame(width: 200)
-                        .onChange(of: selectedCurrency) { newValue in
+                        .onChange(of: selectedCurrency) { oldValue, newValue in
                             totalBalance = MockDashboardData.shared.convertTotalBalance(to: newValue)
                         }
                         Spacer()

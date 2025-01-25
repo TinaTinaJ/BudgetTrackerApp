@@ -148,7 +148,6 @@ final class GoalCell: UICollectionViewCell {
             progressView.progress = 1.0
             progressView.progressTintColor = .brandGreen
         } else {
-            let formattedCurrentAmount = String(format: "%.0f", min(goal.currentAmount, 99999))
             let leftAmount = goal.targetAmount - goal.currentAmount
             let formattedLeftAmount = String(format: "%.0f", min(leftAmount, 99999))
             

@@ -13,7 +13,6 @@ struct MultiLineChartView: View {
     var body: some View {
         GeometryReader { geometry in
             let height = geometry.size.height
-            let width = geometry.size.width
             let maxValue = getMaxValue()
             
             ZStack {
