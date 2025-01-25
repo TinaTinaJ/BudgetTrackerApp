@@ -19,7 +19,6 @@
 		3D0EC96F2D4037380085514B /* ExpenseToBePaidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC96E2D4037370085514B /* ExpenseToBePaidCell.swift */; };
 		3D0EC9712D4037F70085514B /* AddGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC9702D4037F60085514B /* AddGoalCell.swift */; };
 		3D31C4212D44F45A008AE5B4 /* TransactionCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D31C4202D44F458008AE5B4 /* TransactionCategoryCell.swift */; };
-		3D31C4232D450A5A008AE5B4 /* AddTransactionViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D31C4222D450A55008AE5B4 /* AddTransactionViewController+Extensions.swift */; };
 		3D31C4252D450A74008AE5B4 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D31C4242D450A72008AE5B4 /* UIHelper.swift */; };
 		3D31C4292D45418C008AE5B4 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D31C4282D45418B008AE5B4 /* AddGoalView.swift */; };
 		3D31C42B2D4541EA008AE5B4 /* AddGoalHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D31C42A2D4541E8008AE5B4 /* AddGoalHostingController.swift */; };
@@ -98,7 +97,6 @@
 		3D0EC96E2D4037370085514B /* ExpenseToBePaidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseToBePaidCell.swift; sourceTree = "<group>"; };
 		3D0EC9702D4037F60085514B /* AddGoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalCell.swift; sourceTree = "<group>"; };
 		3D31C4202D44F458008AE5B4 /* TransactionCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategoryCell.swift; sourceTree = "<group>"; };
-		3D31C4222D450A55008AE5B4 /* AddTransactionViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddTransactionViewController+Extensions.swift"; sourceTree = "<group>"; };
 		3D31C4242D450A72008AE5B4 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 		3D31C4282D45418B008AE5B4 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
 		3D31C42A2D4541E8008AE5B4 /* AddGoalHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalHostingController.swift; sourceTree = "<group>"; };
@@ -150,11 +148,6 @@
 		3D8FE9C42D3BB304000360CE /* BudgetTrackerAppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = BudgetTrackerAppTests;
-			sourceTree = "<group>";
-		};
-		3D8FE9CE2D3BB304000360CE /* BudgetTrackerAppUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = BudgetTrackerAppUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -235,6 +228,7 @@
 			children = (
 				3D44B4CD2D42AFE100CFB770 /* BankCard.swift */,
 				3D44B4C32D42A6C200CFB770 /* MoreMenuItem.swift */,
+				3D8FEA292D3C3D71000360CE /* BankAccount.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -242,7 +236,6 @@
 		3D73F5A62D3ED98300858131 /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				3D31C4222D450A55008AE5B4 /* AddTransactionViewController+Extensions.swift */,
 				3D73F5A42D3ED98300858131 /* Codable+Dictionary.swift */,
 				3D73F5A52D3ED98300858131 /* ColorExtensions.swift */,
 			);
@@ -280,9 +273,9 @@
 		3D79E2692D3D8B8200268968 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				3D8FE9FB2D3BF4AB000360CE /* Models */,
 				3D79E26A2D3D8BE700268968 /* Services */,
 				3D8FE9FF2D3BF4AB000360CE /* MockData */,
-				3D8FE9FB2D3BF4AB000360CE /* Models */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -336,8 +329,8 @@
 		3D79E26F2D3D8CCD00268968 /* Budget */ = {
 			isa = PBXGroup;
 			children = (
-				3D79E2702D3D8CD700268968 /* Views */,
 				3D79E2712D3D8CDE00268968 /* ViewModels */,
+				3D79E2702D3D8CD700268968 /* Views */,
 			);
 			path = Budget;
 			sourceTree = "<group>";
@@ -346,10 +339,10 @@
 			isa = PBXGroup;
 			children = (
 				3D31C42A2D4541E8008AE5B4 /* AddGoalHostingController.swift */,
-				3D0EC95B2D4026D00085514B /* Cells */,
-				3D8FEA172D3C2C6F000360CE /* BudgetViewController.swift */,
 				3D31C4282D45418B008AE5B4 /* AddGoalView.swift */,
+				3D8FEA172D3C2C6F000360CE /* BudgetViewController.swift */,
 				3D0EC96C2D4030F50085514B /* BudgetPieChartView.swift */,
+				3D0EC95B2D4026D00085514B /* Cells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -451,7 +444,6 @@
 				3D8FEA0E2D3C1FC2000360CE /* GoogleService-Info.plist */,
 				3D8FEA062D3BF4AB000360CE /* BudgetTrackerApp */,
 				3D8FE9C42D3BB304000360CE /* BudgetTrackerAppTests */,
-				3D8FE9CE2D3BB304000360CE /* BudgetTrackerAppUITests */,
 				3D8FE9AC2D3BB303000360CE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -480,7 +472,6 @@
 				3D0EC9592D4024DA0085514B /* GoalModel.swift */,
 				3D0EC9572D4024B80085514B /* ExpenseModel.swift */,
 				3D0EC9552D4024790085514B /* TransactionModel.swift */,
-				3D8FEA292D3C3D71000360CE /* BankAccount.swift */,
 				3D8FEA252D3C3D31000360CE /* Budget.swift */,
 				3D8FEA232D3C3D15000360CE /* Category.swift */,
 			);
@@ -507,11 +498,11 @@
 		3D8FEA062D3BF4AB000360CE /* BudgetTrackerApp */ = {
 			isa = PBXGroup;
 			children = (
-				3D79E27A2D3D8E6200268968 /* Navigation */,
 				3D79E2662D3D8A7100268968 /* App */,
 				3D79E2682D3D8B3700268968 /* Core */,
 				3D79E2692D3D8B8200268968 /* Data */,
 				3D79E26B2D3D8C4200268968 /* Features */,
+				3D79E27A2D3D8E6200268968 /* Navigation */,
 				3D8FE9BC2D3BB304000360CE /* Info.plist */,
 			);
 			path = BudgetTrackerApp;
@@ -577,9 +568,6 @@
 			);
 			dependencies = (
 				3D8FE9CD2D3BB304000360CE /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				3D8FE9CE2D3BB304000360CE /* BudgetTrackerAppUITests */,
 			);
 			name = BudgetTrackerAppUITests;
 			packageProductDependencies = (
@@ -703,7 +691,6 @@
 				3D73F5A32D3ED1B100858131 /* MultiLineChartView.swift in Sources */,
 				3D44B4C42D42A6CE00CFB770 /* MoreMenuItem.swift in Sources */,
 				3D44B4CC2D42A81B00CFB770 /* MoreMenuHostingController.swift in Sources */,
-				3D31C4232D450A5A008AE5B4 /* AddTransactionViewController+Extensions.swift in Sources */,
 				3D8FEA1A2D3C2C8F000360CE /* AddTransactionViewController.swift in Sources */,
 				3D79E2522D3D64B300268968 /* MockDashboardData.swift in Sources */,
 				3D31C42B2D4541EA008AE5B4 /* AddGoalHostingController.swift in Sources */,

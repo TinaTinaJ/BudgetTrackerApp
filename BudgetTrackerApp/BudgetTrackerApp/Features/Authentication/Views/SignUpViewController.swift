@@ -4,7 +4,6 @@
 //
 //  Created by Tiko on 18.01.25.
 //
-
 import UIKit
 import FirebaseAuth
 
@@ -42,7 +41,7 @@ class SignUpViewController: UIViewController {
         return textField
     }()
 
-    private let emailTextField: UITextField = {
+    /*private*/ public let emailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Email"
         textField.borderStyle = .roundedRect
@@ -53,7 +52,7 @@ class SignUpViewController: UIViewController {
         return textField
     }()
 
-    private let passwordTextField: UITextField = {
+    /*private*/ public let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Password"
         textField.borderStyle = .roundedRect
@@ -65,9 +64,17 @@ class SignUpViewController: UIViewController {
         return textField
     }()
 
-    private let registerButton: UIButton = {
+    private let togglePasswordButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(systemName: "eye"), for: .normal)
+        button.setImage(UIImage(systemName: "eye.slash"), for: .selected)
+        button.tintColor = .gray
+        return button
+    }()
+
+    /*private*/ public let registerButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Register", for: .normal)
+        button.setTitle("Create Account", for: .normal)
         button.backgroundColor = UIColor(red: 0.31, green: 0.73, blue: 0.55, alpha: 1)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 10
@@ -87,6 +94,8 @@ class SignUpViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Sign in", for: .normal)
         button.setTitleColor(UIColor(red: 0.31, green: 0.73, blue: 0.55, alpha: 1), for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.heightAnchor.constraint(equalToConstant: 50).isActive = true
         button.addTarget(nil, action: #selector(signInButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -95,6 +104,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         setupGradientBackground()
         setupUI()
+        configurePasswordToggle()
     }
 
     private func setupGradientBackground() {
@@ -115,6 +125,7 @@ class SignUpViewController: UIViewController {
         view.addSubview(lastNameTextField)
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
+        view.addSubview(togglePasswordButton)
         view.addSubview(registerButton)
         view.addSubview(signInLabel)
         view.addSubview(signInButton)
@@ -124,45 +135,58 @@ class SignUpViewController: UIViewController {
         lastNameTextField.translatesAutoresizingMaskIntoConstraints = false
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
+        togglePasswordButton.translatesAutoresizingMaskIntoConstraints = false
         registerButton.translatesAutoresizingMaskIntoConstraints = false
         signInLabel.translatesAutoresizingMaskIntoConstraints = false
         signInButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60),
             titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
-            firstNameTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
+            firstNameTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 40),
             firstNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             firstNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             firstNameTextField.heightAnchor.constraint(equalToConstant: 44),
 
-            lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 12),
+            lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 20),
             lastNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             lastNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             lastNameTextField.heightAnchor.constraint(equalToConstant: 44),
 
-            emailTextField.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 12),
+            emailTextField.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 20),
             emailTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             emailTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             emailTextField.heightAnchor.constraint(equalToConstant: 44),
 
-            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 12),
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
             passwordTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             passwordTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             passwordTextField.heightAnchor.constraint(equalToConstant: 44),
 
-            registerButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
+            togglePasswordButton.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
+            togglePasswordButton.trailingAnchor.constraint(equalTo: passwordTextField.trailingAnchor, constant: -10),
+
+            registerButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 40),
             registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             registerButton.heightAnchor.constraint(equalToConstant: 50),
 
-            signInLabel.topAnchor.constraint(equalTo: registerButton.bottomAnchor, constant: 20),
+            signInLabel.topAnchor.constraint(equalTo: registerButton.bottomAnchor, constant: 30),
             signInLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 
             signInButton.topAnchor.constraint(equalTo: signInLabel.bottomAnchor, constant: 5),
             signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+    }
+
+    private func configurePasswordToggle() {
+        togglePasswordButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+    }
+
+    @objc private func togglePasswordVisibility() {
+        passwordTextField.isSecureTextEntry.toggle()
+        togglePasswordButton.isSelected.toggle()
     }
 
     @objc private func registerButtonTapped() {
@@ -174,7 +198,6 @@ class SignUpViewController: UIViewController {
 
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
-                print("Firebase Registration Error: \(error.localizedDescription)")
                 self.showAlert("Registration Failed: \(error.localizedDescription)")
                 return
             }
@@ -185,7 +208,7 @@ class SignUpViewController: UIViewController {
         }
     }
 
-    private func showAlert(_ message: String, completion: (() -> Void)? = nil) {
+    /*private*/ public func showAlert(_ message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
             completion?()
@@ -197,5 +220,3 @@ class SignUpViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 }
-
-

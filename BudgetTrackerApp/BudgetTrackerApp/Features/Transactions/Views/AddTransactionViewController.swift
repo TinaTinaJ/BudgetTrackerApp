@@ -30,7 +30,7 @@ class AddTransactionViewController: UIViewController {
         return control
     }()
 
-    private let amountLabel: UILabel = {
+    /*private*/ public let amountLabel: UILabel = {
         let label = UILabel()
         label.text = "0"
         label.textAlignment = .center
@@ -80,7 +80,7 @@ class AddTransactionViewController: UIViewController {
         return cv
     }()
 
-    private let confirmButton: UIButton = {
+    /*private*/ public let confirmButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Confirm", for: .normal)
         button.backgroundColor = .brandGreen
@@ -106,7 +106,7 @@ class AddTransactionViewController: UIViewController {
             updateCurrencyButtons()
         }
     }
-    private var selectedCategory: String?
+    /*private*/ public var selectedCategory: String?
     private let db = Firestore.firestore()
 
     private var currencyButtons: [UIButton] = []
@@ -250,7 +250,7 @@ class AddTransactionViewController: UIViewController {
         confirmButton.alpha = confirmButton.isEnabled ? 1.0 : 0.5
     }
 
-    private func showAlert(title: String, message: String) {
+    /*private*/ public func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)

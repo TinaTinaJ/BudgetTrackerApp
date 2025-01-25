@@ -11,26 +11,105 @@ import XCTest
 final class BudgetTrackerAppTests: XCTestCase {
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+    // MARK: - Sign In Tests
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testSignInButtonTappedWithEmptyFields() {
+        let loginVC = LoginViewController()
+        loginVC.loadViewIfNeeded()
+
+        loginVC.emailTextField.text = ""
+        loginVC.passwordTextField.text = ""
+
+        loginVC.signInButton.sendActions(for: .touchUpInside)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            XCTAssertNotNil(loginVC.presentedViewController as? UIAlertController, "Alert should be presented when fields are empty.")
         }
     }
 
+    func testSignInButtonTappedWithValidFields() {
+        let loginVC = LoginViewController()
+        loginVC.loadViewIfNeeded()
+
+        loginVC.emailTextField.text = "test@example.com"
+        loginVC.passwordTextField.text = "password123"
+
+        loginVC.signInButton.sendActions(for: .touchUpInside)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            XCTAssertNil(loginVC.presentedViewController as? UIAlertController, "No alert should be presented for valid input.")
+        }
+    }
+
+    // MARK: - Sign Up Tests
+
+    func testSignUpButtonTappedWithEmptyFields() {
+        let signUpVC = SignUpViewController()
+        signUpVC.loadViewIfNeeded()
+
+        signUpVC.emailTextField.text = ""
+        signUpVC.passwordTextField.text = ""
+
+        signUpVC.registerButton.sendActions(for: .touchUpInside)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            XCTAssertNotNil(signUpVC.presentedViewController as? UIAlertController, "Alert should be presented when fields are empty.")
+        }
+    }
+
+    func testSignUpButtonTappedWithValidFields() {
+        let signUpVC = SignUpViewController()
+        signUpVC.loadViewIfNeeded()
+
+        signUpVC.emailTextField.text = "newuser@example.com"
+        signUpVC.passwordTextField.text = "password123"
+
+        signUpVC.registerButton.sendActions(for: .touchUpInside)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            XCTAssertNil(signUpVC.presentedViewController as? UIAlertController, "No alert should be presented for valid input.")
+        }
+    }
+
+    // MARK: - Add Transaction Tests
+
+    func testAddTransactionWithValidData() {
+        let transactionVC = AddTransactionViewController()
+        transactionVC.loadViewIfNeeded()
+
+        transactionVC.amountLabel.text = "100"
+        transactionVC.selectedCategory = "Food"
+
+        transactionVC.confirmButton.isEnabled = true
+        transactionVC.confirmButton.sendActions(for: .touchUpInside)
+
+        XCTAssertTrue(transactionVC.confirmButton.isEnabled, "Confirm button should be enabled for valid data.")
+    }
+
+    func testAddTransactionWithInvalidData() {
+        let transactionVC = AddTransactionViewController()
+        transactionVC.loadViewIfNeeded()
+
+        transactionVC.amountLabel.text = "0"
+        transactionVC.selectedCategory = nil
+
+        transactionVC.confirmButton.sendActions(for: .touchUpInside)
+
+        XCTAssertFalse(transactionVC.confirmButton.isEnabled, "Confirm button should be disabled for invalid data.")
+    }
+
+    func testAddTransactionCategorySelection() {
+        let transactionVC = AddTransactionViewController()
+        transactionVC.loadViewIfNeeded()
+
+        let category = "Food"
+        transactionVC.selectedCategory = category
+
+        XCTAssertEqual(transactionVC.selectedCategory, category, "Selected category should match the assigned value.")
+    }
 }

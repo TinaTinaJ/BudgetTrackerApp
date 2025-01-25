@@ -11,12 +11,12 @@ import FirebaseAuth
 
 struct AddGoalView: View {
     @Environment(\.dismiss) private var dismiss
-    @State private var goalTitle = ""
-    @State private var costAmount = ""
-    @State private var selectedCurrency = "GEL"
-    @State private var showAlert = false
+    @State /*private*/ public var goalTitle = ""
+    @State /*private*/ public var costAmount = ""
+    @State /*private*/ public var selectedCurrency = "GEL"
+    @State /*private*/ public var showAlert = false
     @State private var isLoading = false
-    @State private var errorMessage = "Please enter both a goal title and a valid cost amount."
+    @State /*private*/ public var errorMessage = "Please enter both a goal title and a valid cost amount."
     
     let mockData: MockDataProvider
     let currencies = ["GEL", "USD", "EUR"]
@@ -96,7 +96,7 @@ struct AddGoalView: View {
         }
     }
     
-    private func saveGoal() {
+    /*private*/ public func saveGoal() {
         let trimmedTitle = goalTitle.trimmingCharacters(in: .whitespacesAndNewlines)
         let trimmedAmount = costAmount.trimmingCharacters(in: .whitespacesAndNewlines)
         
