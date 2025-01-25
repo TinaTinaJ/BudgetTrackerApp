@@ -18,6 +18,7 @@
 		3D0EC96D2D4030F70085514B /* BudgetPieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC96C2D4030F50085514B /* BudgetPieChartView.swift */; };
 		3D0EC96F2D4037380085514B /* ExpenseToBePaidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC96E2D4037370085514B /* ExpenseToBePaidCell.swift */; };
 		3D0EC9712D4037F70085514B /* AddGoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0EC9702D4037F60085514B /* AddGoalCell.swift */; };
+		3D31C4212D44F45A008AE5B4 /* TransactionCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D31C4202D44F458008AE5B4 /* TransactionCategoryCell.swift */; };
 		3D44B4C42D42A6CE00CFB770 /* MoreMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4C32D42A6C200CFB770 /* MoreMenuItem.swift */; };
 		3D44B4C62D42A6EE00CFB770 /* MoreMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4C52D42A6EC00CFB770 /* MoreMenuViewModel.swift */; };
 		3D44B4C82D42A70F00CFB770 /* MoreMenuItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4C72D42A70E00CFB770 /* MoreMenuItemRow.swift */; };
@@ -92,6 +93,7 @@
 		3D0EC96C2D4030F50085514B /* BudgetPieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetPieChartView.swift; sourceTree = "<group>"; };
 		3D0EC96E2D4037370085514B /* ExpenseToBePaidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseToBePaidCell.swift; sourceTree = "<group>"; };
 		3D0EC9702D4037F60085514B /* AddGoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalCell.swift; sourceTree = "<group>"; };
+		3D31C4202D44F458008AE5B4 /* TransactionCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategoryCell.swift; sourceTree = "<group>"; };
 		3D44B4C32D42A6C200CFB770 /* MoreMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuItem.swift; sourceTree = "<group>"; };
 		3D44B4C52D42A6EC00CFB770 /* MoreMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuViewModel.swift; sourceTree = "<group>"; };
 		3D44B4C72D42A70E00CFB770 /* MoreMenuItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuItemRow.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 		3D79E2732D3D8D3500268968 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				3D31C4202D44F458008AE5B4 /* TransactionCategoryCell.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -691,6 +694,7 @@
 				3D79E2522D3D64B300268968 /* MockDashboardData.swift in Sources */,
 				3D8FEA1C2D3C2CB1000360CE /* AdvicesView.swift in Sources */,
 				3D8FEA182D3C2C72000360CE /* BudgetViewController.swift in Sources */,
+				3D31C4212D44F45A008AE5B4 /* TransactionCategoryCell.swift in Sources */,
 				3D8FEA242D3C3D17000360CE /* Category.swift in Sources */,
 				3D44B4D02D42B01500CFB770 /* CardsAccountsViewModel.swift in Sources */,
 				3D0EC95D2D4026DF0085514B /* TransactionCell.swift in Sources */,

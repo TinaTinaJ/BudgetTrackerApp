@@ -9,12 +9,14 @@ import UIKit
 protocol CustomNumberPadDelegate: AnyObject {
     func numberPadDidEnterValue(_ value: String)
     func numberPadDidClear()
+    func numberPadReset()
 }
 
 class CustomNumberPad: UIView {
     
     weak var delegate: CustomNumberPadDelegate?
     private var currentInput: String = "0"
+    private var hasDecimalPoint: Bool = false
     
     private let buttonTitles = [
         ["1", "2", "3", "+"],
@@ -95,12 +97,15 @@ class CustomNumberPad: UIView {
         
         switch title {
         case "C":
-            currentInput = "0"
-            delegate?.numberPadDidClear()
+            reset()
             
         case "⌫":
             if currentInput.count > 1 {
+                let lastChar = String(currentInput.last!)
                 currentInput.removeLast()
+                if lastChar == "." {
+                    hasDecimalPoint = false
+                }
             } else {
                 currentInput = "0"
             }
@@ -110,8 +115,9 @@ class CustomNumberPad: UIView {
             break
             
         case ".":
-            if !currentInput.contains(".") {
+            if !hasDecimalPoint {
                 currentInput += title
+                hasDecimalPoint = true
                 delegate?.numberPadDidEnterValue(currentInput)
             }
             
@@ -119,9 +125,18 @@ class CustomNumberPad: UIView {
             if currentInput == "0" {
                 currentInput = title
             } else {
-                currentInput += title
+                if currentInput.count < 10 {
+                    currentInput += title
+                }
             }
             delegate?.numberPadDidEnterValue(currentInput)
         }
+    }
+    
+    func reset() {
+        currentInput = "0"
+        hasDecimalPoint = false
+        delegate?.numberPadDidClear()
+        delegate?.numberPadReset()
     }
 }

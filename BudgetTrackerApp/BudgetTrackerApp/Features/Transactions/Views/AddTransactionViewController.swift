@@ -11,7 +11,6 @@ import FirebaseAuth
 import FirebaseCore
 
 class AddTransactionViewController: UIViewController {
-    
     private let segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl(items: ["New income", "New expense"])
         control.selectedSegmentIndex = 0
@@ -30,7 +29,7 @@ class AddTransactionViewController: UIViewController {
         control.translatesAutoresizingMaskIntoConstraints = false
         return control
     }()
-    
+
     private let amountLabel: UILabel = {
         let label = UILabel()
         label.text = "0"
@@ -39,7 +38,7 @@ class AddTransactionViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let currencyLabel: UILabel = {
         let label = UILabel()
         label.text = "GEL"
@@ -48,7 +47,7 @@ class AddTransactionViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private let currencyStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -57,7 +56,7 @@ class AddTransactionViewController: UIViewController {
         stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
-    
+
     private let categoryLabel: UILabel = {
         let label = UILabel()
         label.text = "From category"
@@ -65,24 +64,22 @@ class AddTransactionViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 20
-        layout.minimumInteritemSpacing = 20
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        layout.itemSize = CGSize(width: (UIScreen.main.bounds.width - 100) / 4, height: 60)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = .clear
         cv.delegate = self
         cv.dataSource = self
-        cv.register(CategoryCell.self, forCellWithReuseIdentifier: "CategoryCell")
-        cv.allowsSelection = true
-        cv.allowsMultipleSelection = false
-        cv.isUserInteractionEnabled = true
-        cv.delaysContentTouches = false
+        cv.register(TransactionCategoryCell.self, forCellWithReuseIdentifier: "CategoryCell")
         cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.showsHorizontalScrollIndicator = false
         return cv
     }()
-    
+
     private let confirmButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Confirm", for: .normal)
@@ -95,35 +92,41 @@ class AddTransactionViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     private lazy var numPad: CustomNumberPad = {
         let pad = CustomNumberPad()
         pad.delegate = self
         pad.translatesAutoresizingMaskIntoConstraints = false
         return pad
     }()
-    
+
     private let currencies = ["GEL", "USD", "EUR"]
-    private var selectedCurrency = "GEL"
+    private var selectedCurrency = "GEL" {
+        didSet {
+            updateCurrencyButtons()
+        }
+    }
     private var selectedCategory: String?
     private let db = Firestore.firestore()
-    
+
+    private var currencyButtons: [UIButton] = []
+
     private let categories: [(image: String, name: String)] = [
         ("🚗", "Car"), ("🍽️", "Food"), ("🏠", "Home"), ("🎁", "Gift"),
         ("⚕️", "Health"), ("👕", "Clothes"), ("🚌", "Transport"), ("📦", "Other")
     ]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
         updateConfirmButtonState()
     }
-    
+
     private func setupUI() {
         view.backgroundColor = .backgroundMint
         title = "Transactions"
-        
+
         view.addSubview(segmentedControl)
         view.addSubview(amountLabel)
         view.addSubview(currencyLabel)
@@ -132,11 +135,11 @@ class AddTransactionViewController: UIViewController {
         view.addSubview(collectionView)
         view.addSubview(confirmButton)
         view.addSubview(numPad)
-        
+
         setupCurrencyButtons()
         confirmButton.addTarget(self, action: #selector(confirmTapped), for: .touchUpInside)
     }
-    
+
     private func setupCurrencyButtons() {
         currencies.forEach { currency in
             let button = UIButton(type: .system)
@@ -145,10 +148,20 @@ class AddTransactionViewController: UIViewController {
             button.setTitleColor(currency == selectedCurrency ? .white : .black, for: .normal)
             button.layer.cornerRadius = 12
             button.addTarget(self, action: #selector(currencyTapped(_:)), for: .touchUpInside)
+            currencyButtons.append(button)
             currencyStackView.addArrangedSubview(button)
         }
     }
-    
+
+    private func updateCurrencyButtons() {
+        currencyButtons.forEach { button in
+            guard let currency = button.title(for: .normal) else { return }
+            button.backgroundColor = currency == selectedCurrency ? .brandGreen : .white
+            button.setTitleColor(currency == selectedCurrency ? .white : .black, for: .normal)
+        }
+        currencyLabel.text = selectedCurrency
+    }
+
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -169,110 +182,78 @@ class AddTransactionViewController: UIViewController {
             
             categoryLabel.topAnchor.constraint(equalTo: currencyStackView.bottomAnchor, constant: 30),
             categoryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            categoryLabel.heightAnchor.constraint(equalToConstant: 20),
             
             collectionView.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 10),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            collectionView.heightAnchor.constraint(equalToConstant: 180),
+            collectionView.heightAnchor.constraint(equalToConstant: 140),
             
-            confirmButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
+            confirmButton.bottomAnchor.constraint(equalTo: numPad.topAnchor, constant: -10),
             confirmButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             confirmButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             confirmButton.heightAnchor.constraint(equalToConstant: 44),
             
-            numPad.topAnchor.constraint(equalTo: confirmButton.bottomAnchor, constant: 10),
             numPad.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             numPad.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             numPad.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            numPad.heightAnchor.constraint(equalToConstant: 200)
+            numPad.heightAnchor.constraint(equalToConstant: 240)
         ])
     }
-    
+
     @objc private func currencyTapped(_ sender: UIButton) {
         guard let currency = sender.title(for: .normal) else { return }
-        
-        currencyStackView.arrangedSubviews.forEach { view in
-            if let button = view as? UIButton {
-                let isSelected = button == sender
-                button.backgroundColor = isSelected ? .brandGreen : .white
-                button.setTitleColor(isSelected ? .white : .black, for: .normal)
-            }
-        }
-        
         selectedCurrency = currency
-        currencyLabel.text = currency
     }
-    
+
     @objc private func confirmTapped() {
-        print("Confirm tapped")
-        print("Amount: \(amountLabel.text ?? "nil")")
-        print("Category: \(selectedCategory ?? "nil")")
-        
-        guard let amountText = amountLabel.text,
-              let amount = Double(amountText),
-              amount > 0 else {
-            showAlert(title: "Invalid Amount", message: "Please enter a valid amount greater than 0")
+        guard let category = selectedCategory, let amountText = amountLabel.text, let amount = Double(amountText), amount > 0 else {
+            showAlert(title: "Invalid Data", message: "Ensure an amount and category are selected.")
             return
         }
-        
-        guard let category = selectedCategory else {
-            showAlert(title: "Category Required", message: "Please select a category")
-            return
-        }
-        
-        saveTransaction(amount: amount, category: category)
-    }
-    
-    private func saveTransaction(amount: Double, category: String) {
-        guard let userId = Auth.auth().currentUser?.uid else {
-            showAlert(title: "Authentication Error", message: "Please sign in to add transactions")
-            return
-        }
-        
-        let isIncome = segmentedControl.selectedSegmentIndex == 0
-        let transaction: [String: Any] = [
+
+        let transaction = [
             "amount": amount,
             "currency": selectedCurrency,
             "category": category,
-            "type": isIncome ? "income" : "expense",
-            "date": Timestamp(),
-            "createdAt": FieldValue.serverTimestamp()
-        ]
-        
-        db.collection("users").document(userId)
-            .collection("transactions")
-            .addDocument(data: transaction) { [weak self] error in
-                if let error = error {
-                    print("Firebase error: \(error.localizedDescription)")
-                    self?.showAlert(title: "Error", message: error.localizedDescription)
-                } else {
-                    self?.showAlert(title: "Success", message: "Transaction saved successfully") { _ in
-                        self?.resetForm()
-                    }
-                }
+            "type": segmentedControl.selectedSegmentIndex == 0 ? "income" : "expense",
+            "date": Timestamp()
+        ] as [String: Any]
+
+        guard let userId = Auth.auth().currentUser?.uid else {
+            showAlert(title: "Error", message: "User not authenticated.")
+            return
+        }
+
+        db.collection("users").document(userId).collection("transactions").addDocument(data: transaction) { [weak self] error in
+            if let error = error {
+                self?.showAlert(title: "Error", message: error.localizedDescription)
+            } else {
+                self?.showAlert(title: "Success", message: "Transaction saved successfully!")
+                self?.resetForm()
             }
+        }
     }
-    
+
     private func resetForm() {
         amountLabel.text = "0"
         selectedCategory = nil
         collectionView.reloadData()
+        numPad.reset()
         updateConfirmButtonState()
     }
-    
-    private func showAlert(title: String? = nil, message: String, completion: ((UIAlertAction) -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: completion))
-        present(alert, animated: true)
-    }
-    
+
     private func updateConfirmButtonState() {
         let amountIsValid = amountLabel.text != "0" && amountLabel.text != "0.0"
         let categoryIsSelected = selectedCategory != nil
-        print("Validation state - Amount: \(amountIsValid), Category: \(categoryIsSelected)")
-        
         confirmButton.isEnabled = amountIsValid && categoryIsSelected
         confirmButton.alpha = confirmButton.isEnabled ? 1.0 : 0.5
+    }
+
+    private func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 }
 
@@ -280,26 +261,19 @@ extension AddTransactionViewController: UICollectionViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categories.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! CategoryCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCell", for: indexPath) as! TransactionCategoryCell
         let category = categories[indexPath.item]
         cell.configure(with: category.image, name: category.name)
-        cell.isSelected = category.name == selectedCategory
+        cell.isSelected = (category.name == selectedCategory)
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.width - 60) / 4
-        return CGSize(width: width, height: 70)
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Category selected at index: \(indexPath.item)")
         selectedCategory = categories[indexPath.item].name
-        print("Selected category: \(selectedCategory ?? "nil")")
-        updateConfirmButtonState()
         collectionView.reloadData()
+        updateConfirmButtonState()
     }
 }
 
@@ -308,9 +282,12 @@ extension AddTransactionViewController: CustomNumberPadDelegate {
         amountLabel.text = value
         updateConfirmButtonState()
     }
-    
+
     func numberPadDidClear() {
         amountLabel.text = "0"
         updateConfirmButtonState()
     }
+    
+    func numberPadReset() {
+        }
 }
