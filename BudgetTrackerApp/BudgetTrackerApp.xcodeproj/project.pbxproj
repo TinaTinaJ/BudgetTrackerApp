@@ -21,6 +21,8 @@
 		3D31C4212D44F45A008AE5B4 /* TransactionCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D31C4202D44F458008AE5B4 /* TransactionCategoryCell.swift */; };
 		3D31C4232D450A5A008AE5B4 /* AddTransactionViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D31C4222D450A55008AE5B4 /* AddTransactionViewController+Extensions.swift */; };
 		3D31C4252D450A74008AE5B4 /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D31C4242D450A72008AE5B4 /* UIHelper.swift */; };
+		3D31C4292D45418C008AE5B4 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D31C4282D45418B008AE5B4 /* AddGoalView.swift */; };
+		3D31C42B2D4541EA008AE5B4 /* AddGoalHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D31C42A2D4541E8008AE5B4 /* AddGoalHostingController.swift */; };
 		3D44B4C42D42A6CE00CFB770 /* MoreMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4C32D42A6C200CFB770 /* MoreMenuItem.swift */; };
 		3D44B4C62D42A6EE00CFB770 /* MoreMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4C52D42A6EC00CFB770 /* MoreMenuViewModel.swift */; };
 		3D44B4C82D42A70F00CFB770 /* MoreMenuItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B4C72D42A70E00CFB770 /* MoreMenuItemRow.swift */; };
@@ -98,6 +100,8 @@
 		3D31C4202D44F458008AE5B4 /* TransactionCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategoryCell.swift; sourceTree = "<group>"; };
 		3D31C4222D450A55008AE5B4 /* AddTransactionViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddTransactionViewController+Extensions.swift"; sourceTree = "<group>"; };
 		3D31C4242D450A72008AE5B4 /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
+		3D31C4282D45418B008AE5B4 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
+		3D31C42A2D4541E8008AE5B4 /* AddGoalHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalHostingController.swift; sourceTree = "<group>"; };
 		3D44B4C32D42A6C200CFB770 /* MoreMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuItem.swift; sourceTree = "<group>"; };
 		3D44B4C52D42A6EC00CFB770 /* MoreMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuViewModel.swift; sourceTree = "<group>"; };
 		3D44B4C72D42A70E00CFB770 /* MoreMenuItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreMenuItemRow.swift; sourceTree = "<group>"; };
@@ -341,8 +345,10 @@
 		3D79E2702D3D8CD700268968 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3D31C42A2D4541E8008AE5B4 /* AddGoalHostingController.swift */,
 				3D0EC95B2D4026D00085514B /* Cells */,
 				3D8FEA172D3C2C6F000360CE /* BudgetViewController.swift */,
+				3D31C4282D45418B008AE5B4 /* AddGoalView.swift */,
 				3D0EC96C2D4030F50085514B /* BudgetPieChartView.swift */,
 			);
 			path = Views;
@@ -700,12 +706,14 @@
 				3D31C4232D450A5A008AE5B4 /* AddTransactionViewController+Extensions.swift in Sources */,
 				3D8FEA1A2D3C2C8F000360CE /* AddTransactionViewController.swift in Sources */,
 				3D79E2522D3D64B300268968 /* MockDashboardData.swift in Sources */,
+				3D31C42B2D4541EA008AE5B4 /* AddGoalHostingController.swift in Sources */,
 				3D8FEA1C2D3C2CB1000360CE /* AdvicesView.swift in Sources */,
 				3D8FEA182D3C2C72000360CE /* BudgetViewController.swift in Sources */,
 				3D31C4212D44F45A008AE5B4 /* TransactionCategoryCell.swift in Sources */,
 				3D8FEA242D3C3D17000360CE /* Category.swift in Sources */,
 				3D44B4D02D42B01500CFB770 /* CardsAccountsViewModel.swift in Sources */,
 				3D0EC95D2D4026DF0085514B /* TransactionCell.swift in Sources */,
+				3D31C4292D45418C008AE5B4 /* AddGoalView.swift in Sources */,
 				3D44B4CE2D42AFE200CFB770 /* BankCard.swift in Sources */,
 				3D0BCBFB2D3EC5B400DC38EF /* DashboardModels.swift in Sources */,
 				3D79E2542D3D64DD00268968 /* BarChartView.swift in Sources */,

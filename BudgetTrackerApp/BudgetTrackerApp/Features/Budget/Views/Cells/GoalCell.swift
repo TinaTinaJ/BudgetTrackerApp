@@ -6,8 +6,15 @@
 //
 import UIKit
 
+protocol GoalCellDelegate: AnyObject {
+    func didLongPressGoal(_ goal: MockGoal)
+}
+
 final class GoalCell: UICollectionViewCell {
     static let identifier = "GoalCell"
+    
+    weak var delegate: GoalCellDelegate?
+    private var currentGoal: MockGoal?
     
     private let containerView: UIView = {
         let view = UIView()
@@ -69,10 +76,27 @@ final class GoalCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViews()
         setupConstraints()
+        setupLongPressGesture()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupLongPressGesture() {
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        longPressGesture.minimumPressDuration = 0.5
+        containerView.addGestureRecognizer(longPressGesture)
+        containerView.isUserInteractionEnabled = true
+    }
+    
+    @objc private func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began, let goal = currentGoal {
+            delegate?.didLongPressGoal(goal)
+            
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
+        }
     }
     
     private func setupViews() {
@@ -132,6 +156,7 @@ final class GoalCell: UICollectionViewCell {
     }
     
     func configure(with goal: MockGoal) {
+        currentGoal = goal
         titleLabel.text = goal.title
         
         let formattedTargetAmount = String(format: "%.0f", min(goal.targetAmount, 99999))

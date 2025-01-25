@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseCore
 
 final class BudgetViewController: UIViewController {
     
@@ -54,6 +57,14 @@ final class BudgetViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         setupConstraints()
+        loadGoals()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if selectedTab == 2 {
+            collectionView.reloadData()
+        }
     }
     
     private func setupUI() {
@@ -89,6 +100,41 @@ final class BudgetViewController: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func loadGoals() {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        
+        let db = Firestore.firestore()
+        db.collection("users")
+            .document(userId)
+            .collection("goals")
+            .getDocuments { [weak self] snapshot, error in
+                if let error = error {
+                    print("Error loading goals: \(error.localizedDescription)")
+                    return
+                }
+                
+                if let documents = snapshot?.documents {
+                    let firebaseGoals = documents.compactMap { document in
+                        let data = document.data()
+                        return MockGoal(
+                            id: data["id"] as? String ?? "",
+                            title: data["title"] as? String ?? "",
+                            icon: data["icon"] as? String ?? "star.fill",
+                            currentAmount: data["currentAmount"] as? Double ?? 0.0,
+                            targetAmount: data["targetAmount"] as? Double ?? 0.0,
+                            status: data["status"] as? String ?? "Unpaid"
+                        )
+                    }
+                    
+                    self?.mockData.goals = MockDataProvider.shared.goals + firebaseGoals
+                    
+                    DispatchQueue.main.async {
+                        self?.collectionView.reloadData()
+                    }
+                }
+            }
     }
     
     private func createLayout() -> UICollectionViewLayout {
@@ -244,6 +290,7 @@ extension BudgetViewController: UICollectionViewDataSource {
                     withReuseIdentifier: GoalCell.identifier,
                     for: indexPath
                 ) as! GoalCell
+                cell.delegate = self  // Add this line
                 cell.configure(with: mockData.goals[indexPath.item])
                 return cell
             }
@@ -257,9 +304,64 @@ extension BudgetViewController: UICollectionViewDataSource {
 extension BudgetViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if selectedTab == 2 && indexPath.item == mockData.goals.count {
-            let addTransactionVC = AddTransactionViewController()
-            let nav = UINavigationController(rootViewController: addTransactionVC)
-            present(nav, animated: true)
+            let addGoalVC = AddGoalHostingController(mockData: mockData)
+            addGoalVC.modalPresentationStyle = .formSheet
+            present(addGoalVC, animated: true) { [weak self] in
+                self?.collectionView.reloadData()
+            }
         }
+    }
+}
+extension BudgetViewController: GoalCellDelegate {
+    func didLongPressGoal(_ goal: MockGoal) {
+        let alertController = UIAlertController(
+            title: "Delete Goal",
+            message: "Are you sure you want to delete this goal?",
+            preferredStyle: .alert
+        )
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
+            self?.deleteGoal(goal)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true)
+    }
+    
+    private func deleteGoal(_ goal: MockGoal) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        
+        let db = Firestore.firestore()
+        db.collection("users")
+            .document(userId)
+            .collection("goals")
+            .document(goal.id)
+            .delete { [weak self] error in
+                guard let self = self else { return }
+                
+                DispatchQueue.main.async {
+                    if let error = error {
+                        print("Error deleting goal: \(error.localizedDescription)")
+                        
+                        let alertController = UIAlertController(
+                            title: "Error",
+                            message: "Failed to delete goal. Please try again.",
+                            preferredStyle: .alert
+                        )
+                        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+                        self.present(alertController, animated: true)
+                        return
+                    }
+                    
+                    if let index = self.mockData.goals.firstIndex(where: { $0.id == goal.id }) {
+                        self.mockData.goals.remove(at: index)
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
     }
 }

@@ -74,7 +74,7 @@ class MockDataProvider {
         MockExpense(id: "1", title: "Health", amount: 1000, dueDate: "12 February 2024", category: "Health", status: "Paid", percentage: 33)
     ]
     
-    let goals: [MockGoal] = [
+    var goals: [MockGoal] = [
         MockGoal(id: "5", title: "Wedding Fund", icon: "heart.fill", currentAmount: 2000, targetAmount: 15000, status: "Paid"),
         MockGoal(id: "4", title: "Home Renovation", icon: "house.fill", currentAmount: 3000, targetAmount: 10000, status: "Unpaid"),
         MockGoal(id: "3", title: "New Laptop", icon: "laptop", currentAmount: 700, targetAmount: 1500, status: "Paid"),
