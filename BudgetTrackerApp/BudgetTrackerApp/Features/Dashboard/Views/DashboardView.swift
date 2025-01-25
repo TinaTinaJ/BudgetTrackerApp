@@ -41,6 +41,7 @@ struct DashboardView: View {
             }
             .background(Color.backgroundMint.ignoresSafeArea())
             .navigationTitle("Dashboard")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
     

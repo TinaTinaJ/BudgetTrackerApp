@@ -33,8 +33,9 @@ final class ExpenseChartCell: UICollectionViewCell {
     private let legendStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.spacing = 8
-        stack.distribution = .fillEqually
+        stack.spacing = 12
+        stack.distribution = .equalSpacing
+        stack.alignment = .leading
         return stack
     }()
     
@@ -74,7 +75,7 @@ final class ExpenseChartCell: UICollectionViewCell {
             legendStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
             legendStackView.leadingAnchor.constraint(equalTo: pieChartView.trailingAnchor, constant: 16),
             legendStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            legendStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
+            legendStackView.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -16)
         ])
     }
     
@@ -88,6 +89,7 @@ final class ExpenseChartCell: UICollectionViewCell {
         let label = UILabel()
         label.text = text
         label.font = .systemFont(ofSize: 12)
+        label.numberOfLines = 0
         
         [colorView, label].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
@@ -101,7 +103,9 @@ final class ExpenseChartCell: UICollectionViewCell {
             colorView.heightAnchor.constraint(equalToConstant: 8),
             
             label.leadingAnchor.constraint(equalTo: colorView.trailingAnchor, constant: 8),
-            label.centerYAnchor.constraint(equalTo: container.centerYAnchor)
+            label.topAnchor.constraint(equalTo: container.topAnchor),
+            label.bottomAnchor.constraint(equalTo: container.bottomAnchor),
+            label.trailingAnchor.constraint(equalTo: container.trailingAnchor)
         ])
         
         return container

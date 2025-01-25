@@ -12,6 +12,7 @@ struct PieSliceView: View {
     let startAngle: Double
     let endAngle: Double
     let color: Color
+    @State private var progress: CGFloat = 0
     
     var body: some View {
         GeometryReader { geometry in
@@ -24,12 +25,23 @@ struct PieSliceView: View {
                     center: center,
                     radius: radius,
                     startAngle: Angle(degrees: startAngle - 90),
-                    endAngle: Angle(degrees: endAngle - 90),
+                    endAngle: Angle(degrees: startAngle - 90 + (endAngle - startAngle) * progress),
                     clockwise: false
                 )
                 path.closeSubpath()
             }
             .fill(color)
+        }
+        .onAppear {
+            withAnimation(.easeOut(duration: 1.0)) {
+                progress = 1
+            }
+        }
+        .onChange(of: endAngle) { _ in
+            progress = 0
+            withAnimation(.easeOut(duration: 1.0)) {
+                progress = 1
+            }
         }
     }
 }
@@ -39,6 +51,7 @@ struct PieChartView: View {
     let labels: [String]
     let colors: [Color]
     let showLabels: Bool
+    @State private var isAnimating: Bool = false
     
     init(data: [Double], labels: [String], colors: [Color], showLabels: Bool = false) {
         self.data = data
@@ -50,6 +63,12 @@ struct PieChartView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
+                Circle()
+                    .fill(Color.white)
+                    .frame(width: min(geometry.size.width, geometry.size.height),
+                           height: min(geometry.size.width, geometry.size.height))
+                    .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                
                 ForEach(0..<data.count, id: \.self) { index in
                     PieSliceView(
                         startAngle: startAngle(for: index),
@@ -59,17 +78,19 @@ struct PieChartView: View {
                     
                     if showLabels {
                         let midAngle = getMidAngle(for: index)
-                        let radius = min(geometry.size.width, geometry.size.height) * 0.3
+                        let radius = min(geometry.size.width, geometry.size.height) * 0.25
                         let center = CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2)
                         let labelPosition = getPosition(center: center, radius: radius, angle: midAngle)
                         
-                        VStack {
+                        VStack(spacing: 2) {
                             Text(labels[index])
-                                .font(.system(size: 12, weight: .bold))
+                                .font(.system(size: 11))
                                 .foregroundColor(.black)
+                                .opacity(isAnimating ? 1 : 0)
                             Text(String(format: "%.2f", data[index]))
-                                .font(.system(size: 12, weight: .bold))
+                                .font(.system(size: 11))
                                 .foregroundColor(.black)
+                                .opacity(isAnimating ? 1 : 0)
                         }
                         .position(x: labelPosition.x, y: labelPosition.y)
                     }
@@ -77,6 +98,17 @@ struct PieChartView: View {
             }
         }
         .aspectRatio(1, contentMode: .fit)
+        .onAppear {
+            withAnimation(.easeIn(duration: 1.0).delay(0.5)) {
+                isAnimating = true
+            }
+        }
+        .onChange(of: data) { _ in
+            isAnimating = false
+            withAnimation(.easeIn(duration: 1.0).delay(0.5)) {
+                isAnimating = true
+            }
+        }
     }
     
     private func startAngle(for index: Int) -> Double {

@@ -26,3 +26,4 @@ enum TransactionCategory: String, Codable {
     case clothing = "tshirt.fill"
     case charity = "heart.circle.fill"
 }
+

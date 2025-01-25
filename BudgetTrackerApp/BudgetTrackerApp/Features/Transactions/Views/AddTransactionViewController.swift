@@ -5,6 +5,7 @@
 //  Created by Tiko on 18.01.25.
 //
 import UIKit
+import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 import FirebaseCore
@@ -121,7 +122,7 @@ class AddTransactionViewController: UIViewController {
     
     private func setupUI() {
         view.backgroundColor = .backgroundMint
-        title = "Add Transaction"
+        title = "Transactions"
         
         view.addSubview(segmentedControl)
         view.addSubview(amountLabel)

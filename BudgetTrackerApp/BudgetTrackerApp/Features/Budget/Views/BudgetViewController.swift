@@ -38,7 +38,7 @@ final class BudgetViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let layout = createLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor = .backgroundMint // Updated background color
+        cv.backgroundColor = .backgroundMint
         cv.delegate = self
         cv.dataSource = self
         cv.register(TransactionCell.self, forCellWithReuseIdentifier: TransactionCell.identifier)
@@ -58,7 +58,7 @@ final class BudgetViewController: UIViewController {
     
     private func setupUI() {
         title = "Budget"
-        view.backgroundColor = .backgroundMint // Updated background color
+        view.backgroundColor = .backgroundMint
         navigationController?.navigationBar.prefersLargeTitles = true
         
         segmentedControl.addTarget(self, action: #selector(segmentChanged), for: .valueChanged)
