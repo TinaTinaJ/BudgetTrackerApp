@@ -159,10 +159,10 @@ final class GoalCell: UICollectionViewCell {
         currentGoal = goal
         titleLabel.text = goal.title
         
-        let formattedTargetAmount = String(format: "%.0f", min(goal.targetAmount, 99999))
+        let formattedTargetAmount = String(format: "%.0f", goal.targetAmount)
         
         if goal.status == "Paid" {
-            costLabel.text = "Cost: \(formattedTargetAmount) GEL"
+            costLabel.text = "Cost: \(formattedTargetAmount) \(goal.currency)"
             leftAmountLabel.isHidden = true
             
             statusLabel.text = "Payed"
@@ -174,10 +174,10 @@ final class GoalCell: UICollectionViewCell {
             progressView.progressTintColor = .brandGreen
         } else {
             let leftAmount = goal.targetAmount - goal.currentAmount
-            let formattedLeftAmount = String(format: "%.0f", min(leftAmount, 99999))
+            let formattedLeftAmount = String(format: "%.0f", leftAmount)
             
-            costLabel.text = "Cost: \(formattedTargetAmount) GEL"
-            leftAmountLabel.text = "Left: \(formattedLeftAmount) GEL"
+            costLabel.text = "Cost: \(formattedTargetAmount) \(goal.currency)"
+            leftAmountLabel.text = "Left: \(formattedLeftAmount) \(goal.currency)"
             leftAmountLabel.isHidden = false
             
             statusLabel.text = "Pay"

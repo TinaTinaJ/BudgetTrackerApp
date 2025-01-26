@@ -124,7 +124,8 @@ final class BudgetViewController: UIViewController {
                             icon: data["icon"] as? String ?? "star.fill",
                             currentAmount: data["currentAmount"] as? Double ?? 0.0,
                             targetAmount: data["targetAmount"] as? Double ?? 0.0,
-                            status: data["status"] as? String ?? "Unpaid"
+                            status: data["status"] as? String ?? "Unpaid",
+                            currency: data["currency"] as? String ?? "GEL"
                         )
                     }
                     
