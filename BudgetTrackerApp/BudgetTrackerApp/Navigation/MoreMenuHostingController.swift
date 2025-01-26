@@ -6,10 +6,11 @@
 //
 import UIKit
 import SwiftUI
+import NavigationKit
 
-class MoreMenuHostingController: UIHostingController<MoreMenuView> {
+class MoreMenuHostingController: NavigationKit.MoreMenuHostingController<MoreMenuView> {
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder, rootView: MoreMenuView())
+        super.init(coder: aDecoder)
     }
     
     override init(rootView: MoreMenuView) {

@@ -166,7 +166,7 @@ class LoginViewController: UIViewController {
                 return
             }
 
-            let mainTabBarController = MainTabBarController()
+            let mainTabBarController = MainTabBarController(nibName: nil, bundle: nil)
             mainTabBarController.modalPresentationStyle = .fullScreen
             self.present(mainTabBarController, animated: true, completion: nil)
         }

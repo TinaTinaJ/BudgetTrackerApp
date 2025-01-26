@@ -41,6 +41,7 @@
 		3D79E2562D3D64F200268968 /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2552D3D64F000268968 /* LineChartView.swift */; };
 		3D79E2582D3D650B00268968 /* AreaChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E2572D3D650900268968 /* AreaChartView.swift */; };
 		3D79E25F2D3D7CEF00268968 /* MockTransactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D79E25E2D3D7CED00268968 /* MockTransactions.swift */; };
+		3D8115A32D4643850052359C /* NavigationKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3D8115A22D4643850052359C /* NavigationKit */; };
 		3D8FE9EF2D3BEC53000360CE /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3D8FE9EE2D3BEC53000360CE /* FirebaseAuth */; };
 		3D8FE9F12D3BEC53000360CE /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 3D8FE9F02D3BEC53000360CE /* FirebaseCore */; };
 		3D8FE9F32D3BEC53000360CE /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3D8FE9F22D3BEC53000360CE /* FirebaseFirestore */; };
@@ -158,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D8FE9F12D3BEC53000360CE /* FirebaseCore in Frameworks */,
+				3D8115A32D4643850052359C /* NavigationKit in Frameworks */,
 				3D8FE9EF2D3BEC53000360CE /* FirebaseAuth in Frameworks */,
 				3D8FE9F32D3BEC53000360CE /* FirebaseFirestore in Frameworks */,
 			);
@@ -438,12 +440,20 @@
 			path = Navigation;
 			sourceTree = "<group>";
 		};
+		3D8115A12D4641810052359C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3D8FE9A22D3BB303000360CE = {
 			isa = PBXGroup;
 			children = (
 				3D8FEA0E2D3C1FC2000360CE /* GoogleService-Info.plist */,
 				3D8FEA062D3BF4AB000360CE /* BudgetTrackerApp */,
 				3D8FE9C42D3BB304000360CE /* BudgetTrackerAppTests */,
+				3D8115A12D4641810052359C /* Frameworks */,
 				3D8FE9AC2D3BB303000360CE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -528,6 +538,7 @@
 				3D8FE9EE2D3BEC53000360CE /* FirebaseAuth */,
 				3D8FE9F02D3BEC53000360CE /* FirebaseCore */,
 				3D8FE9F22D3BEC53000360CE /* FirebaseFirestore */,
+				3D8115A22D4643850052359C /* NavigationKit */,
 			);
 			productName = BudgetTrackerApp;
 			productReference = 3D8FE9AB2D3BB303000360CE /* BudgetTrackerApp.app */;
@@ -610,6 +621,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				3D8FE9ED2D3BEC53000360CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				3D8115A02D4640D00052359C /* XCLocalSwiftPackageReference "../../NavigationKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3D8FE9AC2D3BB303000360CE /* Products */;
@@ -1037,6 +1049,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		3D8115A02D4640D00052359C /* XCLocalSwiftPackageReference "../../NavigationKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../NavigationKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		3D8FE9ED2D3BEC53000360CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -1049,6 +1068,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3D8115A22D4643850052359C /* NavigationKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3D8115A02D4640D00052359C /* XCLocalSwiftPackageReference "../../NavigationKit" */;
+			productName = NavigationKit;
+		};
 		3D8FE9EE2D3BEC53000360CE /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3D8FE9ED2D3BEC53000360CE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
