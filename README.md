@@ -1,68 +1,74 @@
-BudgetTrackerApp
+# BudgetTrackerApp
+
 A comprehensive iOS application for managing personal finances, tracking expenses, and achieving financial goals. Built with UIKit and SwiftUI, following MVVM architecture.
-Features
 
-📊 Dashboard with financial overview
-💰 Income and expense tracking
-🎯 Financial goal setting and tracking
-📈 Multiple chart visualizations (Pie, Bar, Line, Area charts)
-🔐 Secure authentication system
-💳 Bank card and account management
-📱 Intuitive user interface
-🔄 Real-time data synchronization
+## 🌟 Features
 
-Technologies Used
+• 📊 Dashboard with financial overview  
+• 💰 Income and expense tracking  
+• 🎯 Financial goal setting and tracking  
+• 📈 Multiple chart visualizations (Pie, Bar, Line, Area charts)  
+• 🔐 Secure authentication system  
+• 💳 Bank card and account management  
+• 📱 Intuitive user interface  
+• 🔄 Real-time data synchronization  
 
-UIKit & SwiftUI: Hybrid approach for UI development (50/50 split)
-Firebase: Backend services and authentication
-MVVM: Architecture pattern
-Charts: Custom implementation for financial data visualization
-Core Data: Local data persistence
-GoogleService: Analytics and performance monitoring
+## 🛠 Technologies Used
 
-Requirements
+• **UIKit & SwiftUI**: Hybrid approach for UI development (50/50 split)  
+• **Firebase**: Backend services and authentication  
+• **MVVM**: Architecture pattern  
+• **Charts**: Custom implementation for financial data visualization  
+• **Core Data**: Local data persistence  
+• **GoogleService**: Analytics and performance monitoring  
 
-iOS 15.0+
-Xcode 13.0+
-Swift 5.5+
-CocoaPods or Swift Package Manager
+## ⚙️ Requirements
 
-Dependencies
+• iOS 15.0+  
+• Xcode 13.0+  
+• Swift 5.5+  
+• CocoaPods or Swift Package Manager  
 
-Firebase (11.7.0)
-NavigationKit
-abseil (1.202401602.0)
-AppCheck (11.2.0)
-GoogleAppMeasurement (11.7.0)
-GoogleDataTransport (10.1.0)
-GoogleUtilities (8.0.2)
-gRPC (1.65.1)
-GTMSessionFetcher (4.2.0)
-InteropForGoogle (100.0.0)
-leveldb (1.22.5)
-nanopb (2.30910.0)
-Promises (2.4.0)
-SwiftProtobuf (1.28.2)
+## 📦 Dependencies
 
-Installation
+• Firebase (11.7.0)  
+• NavigationKit  
+• abseil (1.202401602.0)  
+• AppCheck (11.2.0)  
+• GoogleAppMeasurement (11.7.0)  
+• GoogleDataTransport (10.1.0)  
+• GoogleUtilities (8.0.2)  
+• gRPC (1.65.1)  
+• GTMSessionFetcher (4.2.0)  
+• InteropForGoogle (100.0.0)  
+• leveldb (1.22.5)  
+• nanopb (2.30910.0)  
+• Promises (2.4.0)  
+• SwiftProtobuf (1.28.2)  
 
-Clone the repository
-git clone https://github.com/yourusername/BudgetTrackerApp.git
+## 🚀 Installation
 
-bash
+1. Clone the repository
+```bash
+git clone https://github.com/TinaTinaJ/BudgetTrackerApp.git
+```
+
+2. Install dependencies
+```bash
 pod install
+```
 
-Open BudgetTrackerApp.xcworkspace in Xcode
-Configure Firebase
+3. Open BudgetTrackerApp.xcworkspace in Xcode
 
-Add your GoogleService-Info.plist
-Enable necessary Firebase services in console
+4. Configure Firebase:
+   - Add your GoogleService-Info.plist
+   - Enable necessary Firebase services in console
 
+5. Build and run the project
 
-Build and run the project
+## 📁 Project Structure
 
-Project Structure
-
+```
 BudgetTrackerApp/
 ├── App/
 │   └── Resources/
@@ -83,48 +89,65 @@ BudgetTrackerApp/
 │   ├── Transactions/
 │   └── Charts/
 └── Navigation/
+```
 
-Architecture
-The app follows MVVM (Model-View-ViewModel) architecture:
+## 🏗 Architecture (MVVM)
 
-Models: Data structures and business logic
-Views: UI components (UIKit and SwiftUI)
-ViewModels: Business logic and data handling
-Services: Firebase integration and data management
+• **Models**
+  - Data structures
+  - Business logic
+  - Data validation
 
-Features in Detail
-Authentication
+• **Views**
+  - UIKit components
+  - SwiftUI views
+  - Custom UI elements
 
-Secure sign-up and login
-Firebase Authentication integration
-Password reset functionality
+• **ViewModels**
+  - Business logic
+  - Data formatting
+  - State management
 
-Dashboard
+• **Services**
+  - Firebase integration
+  - Data persistence
+  - API communication
 
-Financial overview
-Category-wise expense breakdown
-Quick actions menu
-Multiple chart visualizations
+## 📱 Features In Detail
 
-Budget Management
+### 🔐 Authentication
+• Secure sign-up and login  
+• Firebase Authentication integration  
+• Password reset functionality  
 
-Goal setting and tracking
-Expense categorization
-Transaction history
-Custom budget periods
+### 📊 Dashboard
+• Financial overview  
+• Category-wise expense breakdown  
+• Quick actions menu  
+• Multiple chart visualizations  
 
-Charts and Analytics
+### 💰 Budget Management
+• Goal setting and tracking  
+• Expense categorization  
+• Transaction history  
+• Custom budget periods  
 
-Multi-line charts for trend analysis
-Area charts for cumulative data
-Pie charts for expense distribution
-Bar charts for comparative analysis
+### 📈 Charts and Analytics
+• Multi-line charts for trend analysis  
+• Area charts for cumulative data  
+• Pie charts for expense distribution  
+• Bar charts for comparative analysis  
 
-Contact
-Your Name - jishkarianitiko@gmail.com
-Project Link: [https://github.com/[yourusername](https://github.com/TinaTinaJ)/BudgetTrackerApp](https://github.com/TinaTinaJ/BudgetTrackerApp)
 
-Acknowledgments
+## 📞 Contact
 
-Firebase Documentation
-Apple SwiftUI Documentation
+Your Name - Tiko Jishkariani 
+Email - jishkarianitiko@gmail.com
+
+Project Link: https://github.com/TinaTinaJ/BudgetTrackerApp.git
+
+## 🙏 Acknowledgments
+
+• Firebase Documentation  
+• Apple SwiftUI Documentation  
+• iOS Development Community
