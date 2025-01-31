@@ -7,6 +7,7 @@
 import UIKit
 
 protocol GoalCellDelegate: AnyObject {
+    func didTapDeleteButton(for goal: MockGoal)
     func didLongPressGoal(_ goal: MockGoal)
 }
 
@@ -15,6 +16,12 @@ final class GoalCell: UICollectionViewCell {
     
     weak var delegate: GoalCellDelegate?
     private var currentGoal: MockGoal?
+    private var isEditing = false {
+        didSet {
+            isEditing ? startShaking() : stopShaking()
+            deleteButton.alpha = isEditing ? 1 : 0
+        }
+    }
     
     private let containerView: UIView = {
         let view = UIView()
@@ -72,6 +79,15 @@ final class GoalCell: UICollectionViewCell {
         return progress
     }()
     
+    private lazy var deleteButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "xmark.circle.fill"), for: .normal)
+        button.tintColor = .systemRed
+        button.alpha = 0
+        button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        return button
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -84,24 +100,14 @@ final class GoalCell: UICollectionViewCell {
     }
     
     private func setupLongPressGesture() {
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
-        longPressGesture.minimumPressDuration = 0.5
-        containerView.addGestureRecognizer(longPressGesture)
-        containerView.isUserInteractionEnabled = true
-    }
-    
-    @objc private func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
-        if gesture.state == .began, let goal = currentGoal {
-            delegate?.didLongPressGoal(goal)
-            
-            let generator = UIImpactFeedbackGenerator(style: .medium)
-            generator.impactOccurred()
-        }
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        longPress.minimumPressDuration = 0.5
+        containerView.addGestureRecognizer(longPress)
     }
     
     private func setupViews() {
         [containerView, titleLabel, costLabel, leftAmountLabel,
-         statusContainer, statusLabel, statusIcon, progressView].forEach {
+         statusContainer, statusLabel, statusIcon, progressView, deleteButton].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
         
@@ -113,6 +119,7 @@ final class GoalCell: UICollectionViewCell {
         statusContainer.addSubview(statusLabel)
         statusContainer.addSubview(statusIcon)
         containerView.addSubview(progressView)
+        contentView.addSubview(deleteButton)
     }
     
     private func setupConstraints() {
@@ -151,20 +158,49 @@ final class GoalCell: UICollectionViewCell {
             progressView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             progressView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
             progressView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
-            progressView.heightAnchor.constraint(equalToConstant: 4)
+            progressView.heightAnchor.constraint(equalToConstant: 4),
+            
+            deleteButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: -8),
+            deleteButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 8),
+            deleteButton.widthAnchor.constraint(equalToConstant: 24),
+            deleteButton.heightAnchor.constraint(equalToConstant: 24)
         ])
+    }
+    
+    @objc private func handleLongPress(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began, let goal = currentGoal else { return }
+        isEditing.toggle()
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        delegate?.didLongPressGoal(goal)
+    }
+    
+    @objc private func deleteButtonTapped() {
+        guard let goal = currentGoal else { return }
+        delegate?.didTapDeleteButton(for: goal)
+    }
+    
+    private func startShaking() {
+        let shake = CABasicAnimation(keyPath: "transform.rotation")
+        shake.duration = 0.1
+        shake.repeatCount = .infinity
+        shake.autoreverses = true
+        shake.fromValue = -0.05
+        shake.toValue = 0.05
+        containerView.layer.add(shake, forKey: "shaking")
+    }
+    
+    private func stopShaking() {
+        containerView.layer.removeAnimation(forKey: "shaking")
     }
     
     func configure(with goal: MockGoal) {
         currentGoal = goal
         titleLabel.text = goal.title
-        
         let formattedTargetAmount = String(format: "%.0f", goal.targetAmount)
         
         if goal.status == "Paid" {
             costLabel.text = "Cost: \(formattedTargetAmount) \(goal.currency)"
             leftAmountLabel.isHidden = true
-            
             statusLabel.text = "Payed"
             statusLabel.textColor = .brandGreen
             statusIcon.image = UIImage(systemName: "checkmark.circle.fill")
@@ -175,11 +211,9 @@ final class GoalCell: UICollectionViewCell {
         } else {
             let leftAmount = goal.targetAmount - goal.currentAmount
             let formattedLeftAmount = String(format: "%.0f", leftAmount)
-            
             costLabel.text = "Cost: \(formattedTargetAmount) \(goal.currency)"
             leftAmountLabel.text = "Left: \(formattedLeftAmount) \(goal.currency)"
             leftAmountLabel.isHidden = false
-            
             statusLabel.text = "Pay"
             statusLabel.textColor = .systemRed
             statusIcon.image = UIImage(systemName: "arrow.right")
@@ -188,5 +222,12 @@ final class GoalCell: UICollectionViewCell {
             progressView.progress = Float(goal.currentAmount / goal.targetAmount)
             progressView.progressTintColor = .systemBlue
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        stopShaking()
+        deleteButton.alpha = 0
+        isEditing = false
     }
 }

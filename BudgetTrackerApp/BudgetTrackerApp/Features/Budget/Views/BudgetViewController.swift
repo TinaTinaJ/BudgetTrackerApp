@@ -313,24 +313,13 @@ extension BudgetViewController: UICollectionViewDelegate {
         }
     }
 }
+
 extension BudgetViewController: GoalCellDelegate {
+    func didTapDeleteButton(for goal: MockGoal) {
+        deleteGoal(goal)
+    }
+    
     func didLongPressGoal(_ goal: MockGoal) {
-        let alertController = UIAlertController(
-            title: "Delete Goal",
-            message: "Are you sure you want to delete this goal?",
-            preferredStyle: .alert
-        )
-        
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { [weak self] _ in
-            self?.deleteGoal(goal)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        
-        alertController.addAction(deleteAction)
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true)
     }
     
     private func deleteGoal(_ goal: MockGoal) {
@@ -347,14 +336,13 @@ extension BudgetViewController: GoalCellDelegate {
                 DispatchQueue.main.async {
                     if let error = error {
                         print("Error deleting goal: \(error.localizedDescription)")
-                        
-                        let alertController = UIAlertController(
+                        let alert = UIAlertController(
                             title: "Error",
                             message: "Failed to delete goal. Please try again.",
                             preferredStyle: .alert
                         )
-                        alertController.addAction(UIAlertAction(title: "OK", style: .default))
-                        self.present(alertController, animated: true)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default))
+                        self.present(alert, animated: true)
                         return
                     }
                     
