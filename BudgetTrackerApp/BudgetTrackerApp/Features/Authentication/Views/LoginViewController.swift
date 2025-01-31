@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
         return label
     }()
 
-    /*private*/ public let emailTextField: UITextField = {
+    internal let emailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Email"
         textField.borderStyle = .roundedRect
@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
         return textField
     }()
 
-    /*private*/ public let passwordTextField: UITextField = {
+    internal let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Password"
         textField.borderStyle = .roundedRect
@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
         return button
     }()
 
-    /*private*/ public let signInButton: UIButton = {
+    internal let signInButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Sign in", for: .normal)
         button.backgroundColor = UIColor(red: 0.31, green: 0.73, blue: 0.55, alpha: 1)
@@ -172,7 +172,7 @@ class LoginViewController: UIViewController {
         }
     }
 
-    /*private*/ public func showAlert(_ message: String, completion: (() -> Void)? = nil) {
+    internal func showAlert(_ message: String, completion: (() -> Void)? = nil) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default) { _ in
             completion?()

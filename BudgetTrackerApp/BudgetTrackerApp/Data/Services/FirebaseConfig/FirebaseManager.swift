@@ -14,7 +14,6 @@ class FirebaseManager {
     
     private init() {}
     
-    // MARK: - User Profile
     func createUserProfile(userId: String, name: String, email: String, completion: @escaping (Error?) -> Void) {
         let userRef = db.collection("users").document(userId)
         
@@ -30,7 +29,6 @@ class FirebaseManager {
         }
     }
     
-    // MARK: - Bank Accounts
     func addBankAccount(userId: String, account: BankAccount, completion: @escaping (Error?) -> Void) {
         let accountRef = db.collection("users").document(userId).collection("accounts").document()
         

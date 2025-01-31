@@ -16,7 +16,6 @@ final class BudgetTrackerAppTests: XCTestCase {
     override func tearDownWithError() throws {
     }
 
-    // MARK: - Sign In Tests
 
     func testSignInButtonTappedWithEmptyFields() {
         let loginVC = LoginViewController()
@@ -46,7 +45,6 @@ final class BudgetTrackerAppTests: XCTestCase {
         }
     }
 
-    // MARK: - Sign Up Tests
 
     func testSignUpButtonTappedWithEmptyFields() {
         let signUpVC = SignUpViewController()
@@ -75,8 +73,6 @@ final class BudgetTrackerAppTests: XCTestCase {
             XCTAssertNil(signUpVC.presentedViewController as? UIAlertController, "No alert should be presented for valid input.")
         }
     }
-
-    // MARK: - Add Transaction Tests
 
     func testAddTransactionWithValidData() {
         let transactionVC = AddTransactionViewController()
