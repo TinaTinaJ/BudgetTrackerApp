@@ -13,6 +13,15 @@ A comprehensive iOS application for managing personal finances, tracking expense
 • 📱 Intuitive user interface  
 • 🔄 Real-time data synchronization  
 
+📱 Screenshots
+
+<img width="199" alt="Screenshot 2025-02-01 at 01 26 14" src="https://github.com/user-attachments/assets/15757f5b-c46c-40dd-87ee-288380d73b0d" />, <img width="208" alt="Screenshot 2025-02-01 at 01 25 52" src="https://github.com/user-attachments/assets/387e338d-5406-4bde-b910-fbd1cf05f117" />, <img width="207" alt="Screenshot 2025-02-01 at 01 25 32" src="https://github.com/user-attachments/assets/fb9257df-d17d-4259-9738-214284e7ef0f" />, <img width="205" alt="Screenshot 2025-02-01 at 01 25 08" src="https://github.com/user-attachments/assets/35d00ef9-51fb-4b6a-9d5e-71a59e90cd7d" />
+
+
+
+
+
+
 ## 🛠 Technologies Used
 
 • **UIKit & SwiftUI**: Hybrid approach for UI development (50/50 split)  
