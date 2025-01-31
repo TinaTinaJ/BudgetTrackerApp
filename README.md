@@ -15,7 +15,11 @@ A comprehensive iOS application for managing personal finances, tracking expense
 
 📱 Screenshots
 
-<img width="199" alt="Screenshot 2025-02-01 at 01 26 14" src="https://github.com/user-attachments/assets/15757f5b-c46c-40dd-87ee-288380d73b0d" />, <img width="208" alt="Screenshot 2025-02-01 at 01 25 52" src="https://github.com/user-attachments/assets/387e338d-5406-4bde-b910-fbd1cf05f117" />, <img width="207" alt="Screenshot 2025-02-01 at 01 25 32" src="https://github.com/user-attachments/assets/fb9257df-d17d-4259-9738-214284e7ef0f" />, <img width="205" alt="Screenshot 2025-02-01 at 01 25 08" src="https://github.com/user-attachments/assets/35d00ef9-51fb-4b6a-9d5e-71a59e90cd7d" />
+<img width="205" alt="Screenshot 2025-02-01 at 01 25 08" src="https://github.com/user-attachments/assets/b547b709-ddb2-4aed-bddd-f49a6fb2c745" />, <img width="207" alt="Screenshot 2025-02-01 at 01 25 32" src="https://github.com/user-attachments/assets/381c2479-4064-4dd7-9a9a-267fa5bb0e51" />, <img width="208" alt="Screenshot 2025-02-01 at 01 25 52" src="https://github.com/user-attachments/assets/628a2fe3-0893-4743-a882-77c62728a0be" />, <img width="199" alt="Screenshot 2025-02-01 at 01 26 14" src="https://github.com/user-attachments/assets/2d9072b8-604e-4c74-9fb8-b58c964efd27" />
+
+
+
+
 
 
 
